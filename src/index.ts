@@ -34,6 +34,6 @@ export const BibTeXLanguage = LRLanguage.define({
   }
 })
 
-export function BibTeX() {
+export function bibtex() {
   return new LanguageSupport(BibTeXLanguage)
 }
