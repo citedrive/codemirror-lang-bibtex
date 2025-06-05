@@ -1,41 +1,193 @@
-# Booleans
+# Comments
 
-#t
-#f
-
-==>
-
-Program(Boolean, Boolean)
-
-# Identifiers
-
-one
-Two_Three
+% This is a comment
+% AnotherComment
 
 ==>
 
-Program(Identifier, Identifier)
+Bib(Comment, Comment)
 
-# Strings
+# Simple Entry
 
-"hello"
-"one\"\\two"
-
-==>
-
-Program(String, String)
-
-# Applications
-
-(begin
-  (when #t
-    (print (concat "hello" " " "world")))
-  (print "DONE"))
+@article{
+  sahaModelingStressSocial2017,
+  % work
+  author = {Saha},
+  year = {2017}
+}
 
 ==>
 
-Program(Application(
-  Identifier,
-  Application(Identifier, Boolean, Application(
-    Identifier, Application(Identifier, String, String, String)))
-  Application(Identifier, String)))
+Bib(
+  Entry(
+    EntryType,
+    EntryValue(
+      EntryKey,
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent))
+    ),
+  ),
+)
+
+# Full Entry
+
+@article{
+  sahaModelingStressSocial2017,
+
+  % work
+  author        = {Saha, Koustuv and De Choudhury, Munmun},
+  title         = {
+    Modeling {Stress} with {Social} {Media} {Around} {Incidents} of {Gun}
+    {Violence} on {College} {Campuses}
+  },
+
+  % date
+  year          = {2017},
+  month         = {dec},
+
+  % publication
+  journal       = {Proceedings of the ACM on Human-Computer Interaction},
+  volume        = {1},
+  number        = {CSCW},
+  pages         = {92:1--92:27},
+  doi           = {10.1145/3134727},
+
+  % online
+  url           = {https://dl.acm.org/doi/10.1145/3134727},
+  urldate       = {2023-05-09},
+
+  % sorting
+  keywords      = {
+    campus mental health, college students, crisis, gun violence, mental health,
+    reddit, social media, stress, wellbeing
+  }
+}
+
+==>
+
+Bib(
+  Entry(
+    EntryType,
+    EntryValue(
+      EntryKey,
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+    )
+  )
+)
+
+# Multiple Entries
+
+@article{
+  sahaModelingStressSocial2017,
+
+  % work
+  title         = {
+    Modeling {Stress} with {Social} {Media} {Around} {Incidents} of {Gun}
+    {Violence} on {College} {Campuses}
+  },
+  author        = {Saha, Koustuv and De Choudhury, Munmun},
+
+  % date
+  year          = {2017},
+  month         = {dec},
+
+  % publication
+  journal       = {Proceedings of the ACM on Human-Computer Interaction},
+  volume        = {1},
+  number        = {CSCW},
+  pages         = {92:1--92:27},
+  doi           = {10.1145/3134727},
+
+  % online
+  url           = {https://dl.acm.org/doi/10.1145/3134727},
+  urldate       = {2023-05-09},
+
+  % sorting
+  keywords      = {
+    campus mental health, college students, crisis, gun violence, mental health,
+    reddit, social media, stress, wellbeing
+  }
+}
+
+@book{peroneSongsVietnamConflict2001,
+  % work
+  title         = {Songs of the {Vietnam} conflict},
+  author        = {Perone, James E.},
+
+  % date
+  year          = {2001},
+
+  % publication
+  publisher     = {Greenwood Press},
+  address       = {Westport, Conn.},
+  series        = {Music reference collection},
+  isbn          = {978-0-313-31528-2},
+
+  % msc
+  note          = {OCLC: 46633991},
+  language      = {eng}
+}
+
+==>
+
+Bib(
+  Entry(
+    EntryType,
+    EntryValue(
+      EntryKey,
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+    )
+  ),
+  Entry(
+    EntryType,
+    EntryValue(
+      EntryKey,
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent)),
+    )
+  )
+)

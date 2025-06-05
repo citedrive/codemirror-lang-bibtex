@@ -2,29 +2,38 @@ import {parser} from "./syntax.grammar"
 import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp, foldInside, delimitedIndent} from "@codemirror/language"
 import {styleTags, tags as t} from "@lezer/highlight"
 
-export const EXAMPLELanguage = LRLanguage.define({
+// TODO: setup highlight tags correctly lol
+export const BibTeXLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
-      indentNodeProp.add({
-        Application: delimitedIndent({closing: ")", align: false})
+      /* indentNodeProp.add({
+        Entry: delimitedIndent({closing: "}", align: false}),
+        BracedValue: delimitedIndent({closing: "}", align: false})
       }),
       foldNodeProp.add({
-        Application: foldInside
+        Entry: foldInside,
+        FieldValue: foldInside
       }),
       styleTags({
-        Identifier: t.variableName,
-        Boolean: t.bool,
-        String: t.string,
-        LineComment: t.lineComment,
-        "( )": t.paren
-      })
+        Entry: t.keyword,
+        EntryType: t.className,
+        EntryValue: t.literal,
+        EntryKey: t.keyword,
+        Field: t.keyword,
+        FieldType: t.propertyName,
+        FieldValue: t.keyword,
+        Comment: t.lineComment,
+        "{ }": t.brace,
+        "=": t.operator,
+        ",": t.separator,
+      }) */
     ]
   }),
   languageData: {
-    commentTokens: {line: ";"}
+    commentTokens: {line: "%"}
   }
 })
 
-export function EXAMPLE() {
-  return new LanguageSupport(EXAMPLELanguage)
+export function BibTeX() {
+  return new LanguageSupport(BibTeXLanguage)
 }

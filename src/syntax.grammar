@@ -1,26 +1,30 @@
-@top Program { expression* }
+@top Bib { Entry* }
 
-@skip { space | LineComment }
-
-expression {
-  Identifier |
-  String |
-  Boolean |
-  Application { "(" expression* ")" }
-}
+@skip { space | Comment }
 
 @tokens {
-  Identifier { $[a-zA-Z_\-0-9]+ }
+  space { @whitespace+ }
+  Comment { "%" ![\n]* }
 
-  String { '"' (!["\\] | "\\" _)* '"' }
-
-  Boolean { "#t" | "#f" }
-
-  LineComment { ";" ![\n]* }
-
-  space { $[ \t\n\r]+ }
-
-  "(" ")"
+  EntryType { "@" @asciiLetter+ }
+  EntryKey { (@asciiLetter) (@asciiLetter | @digit | ( "_" | "-"))* }
+  FieldType { (@asciiLetter) (@asciiLetter | @digit | ( "_" | "-"))* }
+  FieldContent { (@asciiLetter | @digit) (@asciiLetter | @digit | ( "_" | "-" | ":" | "," | @whitespace ))* }
 }
 
-@detectDelim
+Entry {
+  EntryType "{" EntryValue "}"
+}
+
+EntryValue {
+  EntryKey
+  ("," Field)*
+}
+
+Field {
+  FieldType "=" FieldValue
+}
+
+FieldValue {
+  "{" FieldContent "}"
+}
