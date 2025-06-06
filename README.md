@@ -38,14 +38,27 @@ const view = new EditorView({
 <dt id="user-content-bibtex">
   <code><strong><a href="#user-content-bibtex">bibtex</a></strong>() → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
 
-<dd><p>BibTeX support. Includes <a href="#user-content-snippets">snippet</a> and smartly suggests entries and fields when valid</p>
+<dd><p>BibTeX support. Includes <a href="#user-content-snippets">snippet</a> and <a href="#user-content-completion">completion</a></p>
 </dd>
 <dt id="user-content-bibtexlanguage">
   <code><strong><a href="#user-content-bibtexlanguage">bibtexLanguage</a></strong>: <a href="https://codemirror.net/docs/ref#language.LRLanguage">LRLanguage</a></code></dt>
 
 <dd></dd>
-<dt id="user-content-snippets">
-  <code><strong><a href="#user-content-snippets">snippets</a></strong>: readonly <a href="https://codemirror.net/docs/ref#autocomplete.Completion">Completion</a>[]</code></dt>
+<dt id="user-content-bibtexsnippets">
+  <code><strong><a href="#user-content-bibtexsnippets">bibtexSnippets</a></strong>: <a href="https://codemirror.net/docs/ref#autocomplete.Completion">Completion</a>[]</code></dt>
 
 <dd></dd>
+<dt id="user-content-entrysnippets">
+  <code><strong><a href="#user-content-entrysnippets">entrySnippets</a></strong>: <a href="https://codemirror.net/docs/ref#autocomplete.Completion">Completion</a>[]</code></dt>
+
+<dd></dd>
+<dt id="user-content-fieldsnippets">
+  <code><strong><a href="#user-content-fieldsnippets">fieldSnippets</a></strong>: <a href="https://codemirror.net/docs/ref#autocomplete.Completion">Completion</a>[]</code></dt>
+
+<dd></dd>
+<dt id="user-content-bibtexcompletion">
+  <code><strong><a href="#user-content-bibtexcompletion">bibtexCompletion</a></strong>: <a href="https://codemirror.net/docs/ref#state.Extension">Extension</a></code></dt>
+
+<dd><p>BibTeX smart-suggest <a href="https://codemirror.net/docs/ref/#autocomplete.completion">completion</a></p>
+</dd>
 </dl>

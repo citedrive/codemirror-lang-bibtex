@@ -1,32 +1,31 @@
-import {snippetCompletion} from "@codemirror/autocomplete"
+import {snippet} from "@codemirror/autocomplete"
 
 // funcs for dynamic snippet creation
-const createEntry = (label: string, detail: string, fields: string[]) => (
-    snippetCompletion(`@${label}{#{<citationkey>},${fields.map(f => `\n\t${f} = {#{<${f}>}}`)}\n}`,
-        {
-            // matching options
-            label: `@${label}`,
-            detail: detail,
+const createEntry = (label: string, detail: string, fields: string[]) => ({
+    // matching options
+    label: `@${label}`,
+    detail: detail,
 
-            // render options
-            section: "Entry",
-            type: "class"
-        }
-    )
-);
-const createField = (label: string, detail: string) => (
-    snippetCompletion(`${label} = {#{<${label}>}}#{,}\n#{}`,
-        {
-            // matching options
-            label: label,
-            detail: detail,
+    //expansion
+    apply: snippet(`@${label}{#{<citationkey>},${fields.map(f => `\n\t${f} = {#{<${f}>}}`)}\n}`),
 
-            // render options
-            section: "Field",
-            type: "property",
-        }
-    )
-);
+    // render options
+    section: "Entry",
+    type: "class"
+});
+
+const createField = (label: string, detail: string) => ({
+    // matching options
+    label: label,
+    detail: detail,
+
+    // expansion
+    apply: snippet(`${label} = {#{<${label}>}}#{,}\n#{}`),
+
+    // render options
+    section: "Field",
+    type: "property",
+});
 
 // create BibTeX autocomplete [snippets](#autocomplete.snippet)
 
@@ -80,4 +79,4 @@ export const fieldSnippets = [
     createField("year", "The year of publication or written.")
 ];
 
-export const snippets = entrySnippets.concat(fieldSnippets);
+export const bibtexSnippets = entrySnippets.concat(fieldSnippets);

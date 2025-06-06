@@ -13,17 +13,18 @@
 }
 
 Entry {
-  EntryType "{" EntryValue "}"
+  EntryHeading
+  EntryValue
+  "}"
+}
+
+EntryHeading {
+  EntryType "{" EntryKey ","
 }
 
 EntryValue {
-  EntryKey
-  EntryContent
-}
-
-EntryContent {
-  ("," Field)*
-  (",")?
+  (Field ",")*
+  (Field)?
 }
 
 Field {
@@ -31,5 +32,7 @@ Field {
 }
 
 FieldValue {
-  "{" FieldContent "}"
+  "{"
+  FieldContent
+  "}"
 }

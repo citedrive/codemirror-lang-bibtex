@@ -2,8 +2,9 @@ import {parser} from "./syntax.grammar"
 import {styleTags, tags as t} from "@lezer/highlight"
 import {LRLanguage, LanguageSupport, delimitedIndent, flatIndent, continuedIndent,
         indentNodeProp, foldNodeProp, foldInside} from "@codemirror/language"
-import {completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
+import {autocompletion, completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
 import {entrySnippets, fieldSnippets} from "./snippets"
+import {bibtexCompletion} from "./completion"
 
 export const bibtexLanguage = LRLanguage.define({
   parser: parser.configure({
@@ -19,12 +20,12 @@ export const bibtexLanguage = LRLanguage.define({
         ",": t.separator,
       }),
       foldNodeProp.add({
-        EntryContent: foldInside,
-        FieldValue: foldInside
+        Entry: context => { return {from: context.node.firstChild.to , to: context.node.lastChild.to + 1}; },
+        FieldValue: context => { return { from: context.node.from + 1, to: context.node.to - 1 }; }
       }),
       indentNodeProp.add({
-        EntryValue: context => { return context.column(context.node.from) + context.unit; },
-        FieldValue: context => { return context.column(context.node.from) + context.unit; }
+        EntryHeading: context => { return context.column(context.node.parent.from) + context.unit; },
+        FieldValue: context => { return context.column(context.node.parent.from) + context.unit; }
       })
     ]
   }),
@@ -41,6 +42,7 @@ export function bibtex() {
     }),
     bibtexLanguage.data.of({
       autocomplete: ifNotIn(["EntryValue"], completeFromList(entrySnippets))
-    })
+    }),
+    bibtexCompletion
   ])
 }
