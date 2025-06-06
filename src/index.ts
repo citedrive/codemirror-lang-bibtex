@@ -1,2 +1,2 @@
 export {bibtexLanguage, bibtex} from "./bibtex"
-export {snippets} from "./snippets"
+export {snippets, entrySnippets, fieldSnippets} from "./snippets"

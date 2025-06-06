@@ -23,9 +23,11 @@ Bib(
     EntryType,
     EntryValue(
       EntryKey,
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent))
+      EntryContent(
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent))
+      ),
     ),
   ),
 )
@@ -36,7 +38,7 @@ Bib(
   sahaModelingStressSocial2017,
   % work
   author = {Saha},
-  year = {2017}
+  year = {2017},
 }
 
 @article{
@@ -53,18 +55,22 @@ Bib(
     EntryType,
     EntryValue(
       EntryKey,
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent))
+      EntryContent(
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent))
+      ),
     ),
   ),
   Entry(
     EntryType,
     EntryValue(
       EntryKey,
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent))
+      EntryContent(
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent))
+      ),
     ),
   ),
 )
@@ -110,23 +116,25 @@ Bib(
     EntryType,
     EntryValue(
       EntryKey,
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
+      EntryContent(
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+      ),
     )
   )
 )
@@ -191,42 +199,46 @@ Bib(
     EntryType,
     EntryValue(
       EntryKey,
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
+      EntryContent(
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+      ),
     )
   ),
   Entry(
     EntryType,
     EntryValue(
       EntryKey,
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
-      Comment,
-      Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
+      EntryContent(
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+        Comment,
+        Field(FieldType, FieldValue(FieldContent)),
+        Field(FieldType, FieldValue(FieldContent)),
+      ),
     )
   )
 )

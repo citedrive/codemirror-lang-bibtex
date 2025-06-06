@@ -18,7 +18,12 @@ Entry {
 
 EntryValue {
   EntryKey
+  EntryContent
+}
+
+EntryContent {
   ("," Field)*
+  (",")?
 }
 
 Field {

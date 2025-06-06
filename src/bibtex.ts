@@ -5,7 +5,6 @@ import {LRLanguage, LanguageSupport, delimitedIndent, flatIndent, continuedInden
 import {completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
 import {entrySnippets, fieldSnippets} from "./snippets"
 
-// TODO: setup highlight tags correctly lol
 export const bibtexLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
@@ -20,9 +19,13 @@ export const bibtexLanguage = LRLanguage.define({
         ",": t.separator,
       }),
       foldNodeProp.add({
-        Entry: foldInside,
+        EntryContent: foldInside,
         FieldValue: foldInside
       }),
+      indentNodeProp.add({
+        EntryValue: context => { return context.column(context.node.from) + context.unit; },
+        FieldValue: context => { return context.column(context.node.from) + context.unit; }
+      })
     ]
   }),
   languageData: {
@@ -30,14 +33,14 @@ export const bibtexLanguage = LRLanguage.define({
   }
 })
 
-/// BibTeX support. Includes [snippet](#lang-bibtex.snippets) and smartly suggests entries and fields when valid
+/// BibTeX support. Includes [snippet](#lang-bibtex.snippets) and smart-suggests entries and fields when valid
 export function bibtex() {
   return new LanguageSupport(bibtexLanguage, [
     bibtexLanguage.data.of({
-      autocomplete: ifIn("EntryValue", completeFromList(fieldSnippets))
+      autocomplete: ifIn(["EntryValue"], completeFromList(fieldSnippets))
     }),
     bibtexLanguage.data.of({
-      autocomplete: ifNotIn("EntryValue", completeFromList(entrySnippets))
+      autocomplete: ifNotIn(["EntryValue"], completeFromList(entrySnippets))
     })
   ])
 }
