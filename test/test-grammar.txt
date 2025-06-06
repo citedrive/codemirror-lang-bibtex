@@ -30,6 +30,45 @@ Bib(
   ),
 )
 
+# Two Simple Entries
+
+@article{
+  sahaModelingStressSocial2017,
+  % work
+  author = {Saha},
+  year = {2017}
+}
+
+@article{
+  sahaModelingStressSocial2017,
+  % work
+  author = {Saha},
+  year = {2017}
+}
+
+==>
+
+Bib(
+  Entry(
+    EntryType,
+    EntryValue(
+      EntryKey,
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent))
+    ),
+  ),
+  Entry(
+    EntryType,
+    EntryValue(
+      EntryKey,
+      Comment,
+      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent))
+    ),
+  ),
+)
+
 # Full Entry
 
 @article{

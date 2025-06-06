@@ -34,18 +34,8 @@ const view = new EditorView({
 
 ## API Reference
 
-<dl>
-<dt id="user-content-bibtex">
-  <code><strong><a href="#user-content-bibtex">bibtex</a></strong>() → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
+@bibtex
 
-<dd><p>BibTeX support. Includes <a href="#user-content-snippets">snippet</a> and smartly suggests entries and fields when valid</p>
-</dd>
-<dt id="user-content-bibtexlanguage">
-  <code><strong><a href="#user-content-bibtexlanguage">bibtexLanguage</a></strong>: <a href="https://codemirror.net/docs/ref#language.LRLanguage">LRLanguage</a></code></dt>
+@bibtexLanguage
 
-<dd></dd>
-<dt id="user-content-snippets">
-  <code><strong><a href="#user-content-snippets">snippets</a></strong>: readonly <a href="https://codemirror.net/docs/ref#autocomplete.Completion">Completion</a>[]</code></dt>
-
-<dd></dd>
-</dl>
+@snippets
