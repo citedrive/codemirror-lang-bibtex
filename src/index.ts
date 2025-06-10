@@ -1,3 +1,4 @@
-export {bibtexLanguage, bibtex} from "./bibtex"
-export {bibtexSnippets, entrySnippets, fieldSnippets} from "./snippets"
+export {bibtex, biblatex, bibtexLanguage} from "./language"
 export {bibtexCompletion} from "./completion"
+export {bibtexSnippets, bibtexEntrySnippets, bibtexFieldSnippets} from "./bibtex"
+export {biblatexSnippets, biblatexEntrySnippets, biblatexFieldSnippets} from "./biblatex"
