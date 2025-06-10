@@ -1,7 +1,5 @@
 import {createEntry, createField} from "./snippets"
 
-// create BibLaTeX autocomplete [snippets](#autocomplete.snippet)
-
 // ENTRIES
 export const biblatexEntrySnippets = [
     // Standard Entries
@@ -198,4 +196,5 @@ export const biblatexFieldSnippets = [
     createField("school", "An alias for <institution>.")
 ];
 
+/// BibLaTeX autocomplete [snippets](#autocomplete.snippet)
 export const biblatexSnippets = biblatexEntrySnippets.concat(biblatexFieldSnippets);

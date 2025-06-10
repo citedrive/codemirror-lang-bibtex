@@ -7,6 +7,7 @@ import {bibtexCompletion} from "./completion"
 import {bibtexSnippets, bibtexEntrySnippets, bibtexFieldSnippets} from "./bibtex"
 import {biblatexSnippets, biblatexEntrySnippets, biblatexFieldSnippets} from "./biblatex"
 
+/// BibTeX Language configuration with syntax [highlighting](#language.syntaxHighlighting), [folding](#language.foldNodeProp), and [indentation](#language.indentNodeProp).
 export const bibtexLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
@@ -35,7 +36,7 @@ export const bibtexLanguage = LRLanguage.define({
   }
 })
 
-/// BibTeX support. Includes autocompletion configuration and autocompletion [snippets](#autocomplete.snippet) that are suggested based on [context](#autocomplete.CompletionContext)
+/// BibTeX support with autocompletion configuration and autocompletion [snippets](#autocomplete.snippet) that are suggested based on [context](#autocomplete.CompletionContext).
 export function bibtex() {
   return new LanguageSupport(bibtexLanguage, [
     bibtexLanguage.data.of({
@@ -48,7 +49,7 @@ export function bibtex() {
   ])
 }
 
-/// BibLaTeX support. Includes autocompletion configuration and autocompletion [snippets](#autocomplete.snippet) that are suggested based on [context](#autocomplete.CompletionContext)
+/// BibLaTeX support with autocompletion configuration and autocompletion [snippets](#autocomplete.snippet) that are suggested based on [context](#autocomplete.CompletionContext).
 export function biblatex() {
   return new LanguageSupport(bibtexLanguage, [
     bibtexLanguage.data.of({

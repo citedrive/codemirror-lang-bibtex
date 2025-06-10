@@ -38,18 +38,4 @@ const view = new EditorView({
 
 @biblatex
 
-@bibtexSnippets
-
-@bibtexEntrySnippets
-
-@bibtexFieldSnippets
-
-@biblatexSnippets
-
-@biblatexEntrySnippets
-
-@biblatexFieldSnippets
-
 @bibtexLanguage
-
-@bibtexCompletion

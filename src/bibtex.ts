@@ -1,7 +1,5 @@
 import {createEntry, createField} from "./snippets"
 
-// create BibTeX autocomplete [snippets](#autocomplete.snippet)
-
 // ENTRIES
 export const bibtexEntrySnippets = [
     createEntry("article", "An article from a journal or magazine.", ["author", "title", "journal", "year"]),
@@ -52,4 +50,5 @@ export const bibtexFieldSnippets = [
     createField("year", "The year of publication or written.")
 ];
 
+/// BibTeX autocomplete [snippets](#autocomplete.snippet)
 export const bibtexSnippets = bibtexEntrySnippets.concat(bibtexFieldSnippets);
