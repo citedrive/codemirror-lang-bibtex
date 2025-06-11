@@ -1,10 +1,27 @@
 import {snippet} from "@codemirror/autocomplete"
 
+const sectionNames = [
+    "Entry",
+    "Field",
+    "Recommended",
+    "Standard",
+    "Optional",
+    "Alias",
+    "Special"
+];
+
+const sections = [
+    ({name: sectionNames[0], rank: 0}),
+    ({name: sectionNames[1], rank: 0}),
+    ({name: sectionNames[2], rank: 1}),
+    ({name: sectionNames[3], rank: 1}),
+    ({name: sectionNames[4], rank: 2}),
+    ({name: sectionNames[5], rank: 3}),
+    ({name: sectionNames[6], rank: 4})
+];
+
 // funcs for dynamic snippet creation
 export const createEntry = (label: string, section: string, detail: string, fields: string[]) => {
-    let boost = (section === "Recommended" ? 99 : -99);
-    console.log(section);
-    console.log(boost);
     return ({
         // matching options
         label: `@${label}`,
@@ -14,16 +31,12 @@ export const createEntry = (label: string, section: string, detail: string, fiel
         apply: snippet(`@${label}{#{<citationkey>},${fields.map(f => `\n\t${f} = {#{<${f}>}}`)}\n}`),
 
         // render options
-        section: section,
-        boost: boost,
+        section: sections[sectionNames.indexOf(section)],
         type: "class"
     })
 };
 
 export const createField = (label: string, section: string, detail: string) => {
-    let boost = (section === "Recommended" ? 99 : -99);
-    console.log(section);
-    console.log(boost);
     return ({
         // matching options
         label: label,
@@ -33,8 +46,7 @@ export const createField = (label: string, section: string, detail: string) => {
         apply: snippet(`${label} = {#{<${label}>}}#{,}\n#{}`),
 
         // render options
-        section: section,
-        boost: boost,
+        section: sections[sectionNames.indexOf(section)],
         type: "property",
     })
 };
