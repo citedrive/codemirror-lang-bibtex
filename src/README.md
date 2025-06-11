@@ -36,6 +36,6 @@ const view = new EditorView({
 
 @bibtex
 
-@biblatex
-
 @bibtexLanguage
+
+@biblatexLanguage

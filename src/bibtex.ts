@@ -39,9 +39,10 @@ export const bibtexLanguage = LRLanguage.define({
     }
 })
 
+/// BibLaTeX Language configuration as a [dialect](https://lezer.codemirror.net/docs/ref/#lr.ParserConfig.dialect) of BibTeX.
 export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, "BibLaTeX");
 
-/// BibTeX support with autocompletion configuration and autocompletion [snippets](#autocomplete.snippet) that are suggested based on [context](#autocomplete.CompletionContext).
+/// BibTeX [language](#language.LRLanguage) support with BibLaTeX [dialect](https://lezer.codemirror.net/docs/ref/#lr.ParserConfig.dialect), autocompletion [configuration](#autocomplete.autocompletion^config), and autocompletion [snippets](#autocomplete.snippet) that are suggested based on the editor [context](#autocomplete.CompletionContext).
 export function bibtex(config: {biblatex?: boolean} = {}) {
     let lang = config.biblatex ? biblatexLanguage : bibtexLanguage;
     let snippets = config.biblatex
@@ -60,16 +61,3 @@ export function bibtex(config: {biblatex?: boolean} = {}) {
         ]
     );
 }
-
-/* /// BibLaTeX support with autocompletion configuration and autocompletion [snippets](#autocomplete.snippet) that are suggested based on [context](#autocomplete.CompletionContext).
-export function biblatex() {
-    return new LanguageSupport(bibtexLanguage, [
-        bibtexLanguage.data.of({
-            autocomplete: ifIn(["EntryValue"], completeFromList(biblatexFieldSnippets))
-        }),
-        bibtexLanguage.data.of({
-            autocomplete: ifNotIn(["EntryValue"], completeFromList(biblatexEntrySnippets))
-        }),
-        bibtexCompletion
-    ])
-} */

@@ -36,18 +36,18 @@ const view = new EditorView({
 
 <dl>
 <dt id="user-content-bibtex">
-  <code><strong><a href="#user-content-bibtex">bibtex</a></strong>() → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
+  <code><strong><a href="#user-content-bibtex">bibtex</a></strong>(<a id="user-content-bibtex^config" href="#user-content-bibtex^config">config</a>&#8288;?: {biblatex&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>} = {}) → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
 
-<dd><p>BibTeX support with autocompletion configuration and autocompletion <a href="https://codemirror.net/docs/ref/#autocomplete.snippet">snippets</a> that are suggested based on <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionContext">context</a>.</p>
-</dd>
-<dt id="user-content-biblatex">
-  <code><strong><a href="#user-content-biblatex">biblatex</a></strong>() → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
-
-<dd><p>BibLaTeX support with autocompletion configuration and autocompletion <a href="https://codemirror.net/docs/ref/#autocomplete.snippet">snippets</a> that are suggested based on <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionContext">context</a>.</p>
+<dd><p>BibTeX <a href="https://codemirror.net/docs/ref/#language.LRLanguage">language</a> support with BibLaTeX <a href="https://lezer.codemirror.net/docs/ref/#lr.ParserConfig.dialect">dialect</a>, autocompletion <a href="https://codemirror.net/docs/ref/#autocomplete.autocompletion%5Econfig">configuration</a>, and autocompletion <a href="https://codemirror.net/docs/ref/#autocomplete.snippet">snippets</a> that are suggested based on the editor <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionContext">context</a>.</p>
 </dd>
 <dt id="user-content-bibtexlanguage">
   <code><strong><a href="#user-content-bibtexlanguage">bibtexLanguage</a></strong>: <a href="https://codemirror.net/docs/ref#language.LRLanguage">LRLanguage</a></code></dt>
 
 <dd><p>BibTeX Language configuration with syntax <a href="https://codemirror.net/docs/ref/#language.syntaxHighlighting">highlighting</a>, <a href="https://codemirror.net/docs/ref/#language.foldNodeProp">folding</a>, and <a href="https://codemirror.net/docs/ref/#language.indentNodeProp">indentation</a>.</p>
+</dd>
+<dt id="user-content-biblatexlanguage">
+  <code><strong><a href="#user-content-biblatexlanguage">biblatexLanguage</a></strong>: <a href="https://codemirror.net/docs/ref#language.LRLanguage">LRLanguage</a></code></dt>
+
+<dd><p>BibLaTeX Language configuration as a <a href="https://lezer.codemirror.net/docs/ref/#lr.ParserConfig.dialect">dialect</a> of BibTeX.</p>
 </dd>
 </dl>
