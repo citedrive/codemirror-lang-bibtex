@@ -119,7 +119,7 @@ Bib(
     Comment,
     EntryValue(
       Field(FieldType, FieldValue(FieldContent)),
-      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent, FieldValue(FieldContent), FieldContent, FieldValue(FieldContent), FieldValue(FieldContent), FieldValue(FieldContent), FieldValue(FieldContent), FieldContent, FieldValue(FieldContent), FieldValue(FieldContent), FieldContent, FieldValue(FieldContent), FieldValue(FieldContent))),
       Comment,
       Field(FieldType, FieldValue(FieldContent)),
       Field(FieldType, FieldValue(FieldContent)),
@@ -201,7 +201,7 @@ Bib(
     ),
     Comment,
     EntryValue(
-      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent, FieldValue(FieldContent), FieldContent, FieldValue(FieldContent), FieldValue(FieldContent), FieldValue(FieldContent), FieldValue(FieldContent), FieldContent, FieldValue(FieldContent), FieldValue(FieldContent), FieldContent, FieldValue(FieldContent), FieldValue(FieldContent))),
       Field(FieldType, FieldValue(FieldContent)),
       Comment,
       Field(FieldType, FieldValue(FieldContent)),
@@ -226,7 +226,7 @@ Bib(
     ),
     Comment,
     EntryValue(
-      Field(FieldType, FieldValue(FieldContent)),
+      Field(FieldType, FieldValue(FieldContent, FieldValue(FieldContent), FieldContent)),
       Field(FieldType, FieldValue(FieldContent)),
       Comment,
       Field(FieldType, FieldValue(FieldContent)),

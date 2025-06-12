@@ -9,7 +9,8 @@
   EntryType { "@" @asciiLetter+ }
   EntryKey { (@asciiLetter) (@asciiLetter | @digit | ( "_" | "-"))* }
   FieldType { (@asciiLetter) (@asciiLetter | @digit | ( "_" | "-"))* }
-  FieldContent { (@asciiLetter | @digit) (@asciiLetter | @digit | ( "_" | "-" | ":" | "," | @whitespace ))* }
+  FieldContent { ![{}]+ }
+  @precedence { Comment, space, FieldContent }
 }
 
 Entry {
@@ -31,8 +32,8 @@ Field {
   FieldType "=" FieldValue
 }
 
-FieldValue {
+@detectDelim FieldValue {
   "{"
-  FieldContent
+  ( FieldValue | FieldContent )*
   "}"
 }
