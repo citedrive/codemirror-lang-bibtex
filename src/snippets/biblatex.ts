@@ -158,7 +158,7 @@ export const biblatexFieldSnippets = [
     createField("version", "Optional", "The revision number of a work."),
     createField("volume", "Optional", "The volume number of a series or periodical, as an integer."),
     createField("volumes", "Optional", "The total number of volumes of a series, as an integer."),
-    // WARN: opinion: exclude `month` and `year` from BibLaTeX as the user gets significantly more functionality from the `date` field
+    // WARN: opinion: exclude `month` and `year` fields as the user gets significantly more functionality from the `date` field
     // createField("month", "Optional", "The month of publication."),
     // createField("year", "Optional", "The year of publication."),
 
@@ -181,6 +181,7 @@ export const biblatexFieldSnippets = [
     createField("sortname", "Special", "A name used to modify the sorting order of the bibliography."),
     createField("sortshorthand", "Special", "Used to modify the sorting order of the list of shorthands."),
     createField("sorttitle", "Special", "A title used to modify the sorting order of the bibliography."),
+    // WARN: opinion: exclude `sortyear` field for the same reason as the `month` and `year` exclusions
     // createField("sortyear", "Special", "A year used to modify the sorting order of the bibliography."),
     createField("xdata", "Special", "Inherits data from one or more specified entry keys."),
     createField("xref", "Special", "Cross-references from one or more specified entry keys."),
@@ -198,5 +199,5 @@ export const biblatexFieldSnippets = [
     createField("school", "Alias", "An alias for <institution>.")
 ];
 
-/// BibLaTeX autocomplete [snippets](#autocomplete.snippet)
+/// A complete ([opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin)) collection of BibLaTeX autocomplete [snippets](#autocomplete.snippet).
 export const biblatexSnippets = biblatexEntrySnippets.concat(biblatexFieldSnippets);

@@ -1,6 +1,6 @@
 import {autocompletion} from "@codemirror/autocomplete"
 
-/// BibTeX autocomplete [completion](#autocomplete.completion)
+/// BibTeX autocompletion [configuration](#autocomplete.autocompletion^config)
 export const bibtexCompletion = autocompletion({
     activateOnTyping: true,
     activateOnTypingDelay: 100,

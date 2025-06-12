@@ -50,5 +50,5 @@ export const bibtexFieldSnippets = [
     createField("year", "Field", "The year of publication or written.")
 ];
 
-/// BibTeX autocomplete [snippets](#autocomplete.snippet)
+/// A complete ([opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin)) collection of BibTeX autocomplete [snippets](#autocomplete.snippet).
 export const bibtexSnippets = bibtexEntrySnippets.concat(bibtexFieldSnippets);
