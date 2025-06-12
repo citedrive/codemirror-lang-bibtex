@@ -43,6 +43,7 @@
   },
   "scripts": {
     "test": "cm-runtests",
-    "prepare": "cm-buildhelper src/index.ts"
+    "prepare": "cm-buildhelper src/index.ts",
+    "readme": "cd ..; npm run prepare-readme lang-bibtex; cd lang-bibtex"
   }
 }
