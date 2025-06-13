@@ -1,7 +1,6 @@
 import {parser} from "./syntax.grammar"
 import {styleTags, tags as t} from "@lezer/highlight"
-import {LRLanguage, LanguageSupport, delimitedIndent, flatIndent, continuedIndent,
-    indentNodeProp, foldNodeProp, foldInside} from "@codemirror/language"
+import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp} from "@codemirror/language"
 import {autocompletion, completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
 import {bibtexCompletion} from "./completion"
 import {bibtexSnippets, bibtexEntrySnippets, bibtexFieldSnippets,

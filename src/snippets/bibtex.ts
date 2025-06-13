@@ -33,6 +33,7 @@ export const bibtexFieldSnippets = [
     createField("howpublished", sections.fields.Field, "How something strange has been published."),
     createField("institution", sections.fields.Field, "The sponsoring institution of a technical report."),
     createField("isbn", sections.fields.Field, "The International Standard Book Number of the work."),
+    createField("issn", sections.fields.Field, "The International Standard Serial Number of a periodical."),
     createField("journal", sections.fields.Field, "The journal name."),
     createField("key", sections.fields.Field, "The citation key (for use in a `\\cite{}` command)."),
     createField("keywords", sections.fields.Field, "Keywords that describe the work being cited."),
