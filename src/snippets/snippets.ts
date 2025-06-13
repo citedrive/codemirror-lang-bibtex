@@ -2,18 +2,12 @@ import {snippet, CompletionSection} from "@codemirror/autocomplete"
 
 // struct with ranked section objects
 export const sections = {
-    entries: {
-        Entry: {name: "Entry", rank: 0},
-        Alias: {name: "Alias", rank: 1},
-        Special: {name: "Special", rank: 2}
-    },
-    fields: {
-        Field: {name: "Field", rank: 0},
-        Recommended: {name: "Recommended", rank: 1},
-        Optional: {name: "Optional", rank: 2},
-        Alias: {name: "Alias", rank: 3},
-        Special: {name: "Special", rank: 4}
-    }
+    Entry: {name: "Entry", rank: 0},
+    Field: {name: "Field", rank: 0},
+    Recommended: {name: "Recommended", rank: 1},
+    Optional: {name: "Optional", rank: 2},
+    Alias: {name: "Alias", rank: 3},
+    Special: {name: "Special", rank: 4}
 };
 
 // funcs for dynamic snippet creation
