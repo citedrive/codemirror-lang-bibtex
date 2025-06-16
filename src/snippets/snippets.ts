@@ -1,5 +1,8 @@
 import {snippet, CompletionSection} from "@codemirror/autocomplete"
 
+// NOTE: temp until config for recommended-optional/default implemented
+let confSnipOpt = true;
+
 // struct with ranked section objects
 export const sections = {
     Entry: {name: "Entry", rank: 0},
@@ -11,19 +14,20 @@ export const sections = {
 };
 
 // funcs for dynamic snippet creation
-export const createEntry = (label: string, section: CompletionSection, detail: string, fields: string[]) => {
+export const createEntry = (label: string, section: CompletionSection, detail: string, fields: {recommended: string[], optional: string[], required: string[]}) => {
+    let applySnip = confSnipOpt
+        ? snippet(`@${label}{#{<citationkey>},\n\t% Recommended Fields:${fields.recommended.map(f => `\n\t${f} = {#{<${f}>}}`)}\n\n\t% Optional Fields:${fields.optional.map(f => `\n\t${f} = {#{<${f}>}}`)}\n}`)
+        : snippet(`@${label}{#{<citationkey>},${fields.required.map(f => `\n\t${f} = {#{<${f}>}}`)}\n}`);
     return ({
         // matching options
         label: `@${label}`,
         detail: detail,
-
         //expansion
-        apply: snippet(`@${label}{#{<citationkey>},${fields.map(f => `\n\t${f} = {#{<${f}>}}`)}\n}`),
-
+        apply: applySnip,
         // render options
         section: section,
         type: "class"
-    })
+    });
 };
 
 export const createField = (label: string, section: CompletionSection, detail: string) => {

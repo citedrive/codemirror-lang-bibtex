@@ -2,20 +2,145 @@ import {sections, createEntry, createField} from "./snippets"
 
 // ENTRIES
 export const bibtexEntrySnippets = [
-    createEntry("article", sections.Entry, "An article from a journal or magazine.", ["author", "title", "journal", "year"]),
-    createEntry("book", sections.Entry, "A book with a publisher.", ["author", "editor", "title", "publisher", "year"]),
-    createEntry("booklet", sections.Entry, "A work that is printed and bound, but without a named publisher or sponsoring institution.", ["title"]),
-    createEntry("conference", sections.Entry, "An article in a conference proceedings.", ["author", "title", "booktitle", "year"]),
-    createEntry("inbook", sections.Entry, "A part of a book, which may be a chapter (or section or whatever) and/or a range of pages.", ["author/editor", "title", "chapter/pages", "publisher", "year"]),
-    createEntry("incollection", sections.Entry, "A part of a book having its own title.", ["author", "title", "booktitle", "publisher", "year"]),
-    createEntry("inproceedings", sections.Entry, "An article in a conference proceedings.", ["author", "title", "booktitle", "year"]),
-    createEntry("manual", sections.Entry, "Technical documentation.", ["title"]),
-    createEntry("mastersthesis", sections.Entry, "A Master’s thesis.", ["author", "title", "school", "year"]),
-    createEntry("misc", sections.Entry, "Use this type when nothing else fits.", []),
-    createEntry("phdthesis", sections.Entry, "A PhD thesis.", ["author", "title", "school", "year"]),
-    createEntry("proceedings", sections.Entry, "The proceedings of a conference.", ["title", "year"]),
-    createEntry("techreport", sections.Entry, "A report published by a school or other institution.", ["author", "title", "institution", "year"]),
-    createEntry("unpublished", sections.Entry, "A document having an author and title, but not formally published.", ["author", "title", "note"]),
+    createEntry(
+        "article",
+        sections.Entry,
+        "An article from a journal or magazine.",
+        {
+            recommended: ["author", "title", "year", "month", "journal", "publisher", "doi", "url", "urldate"],
+            optional: ["volume", "number", "pages", "issn"],
+            required: ["author", "title", "journal", "year"]
+        }
+    ),
+    createEntry("book",
+        sections.Entry,
+        "A book with a publisher.",
+        {
+            recommended: ["author", "title", "year", "month", "publisher", "address", "isbn"],
+            optional: ["volume", "number", "pages", "series", "edition"],
+            required: ["author", "editor", "title", "publisher", "year"]
+        }
+    ),
+    createEntry(
+        "booklet",
+        sections.Entry,
+        "A work that is printed and bound, but without a named publisher or sponsoring institution.",
+        {
+            recommended: ["author", "title", "year", "month", "isbn"],
+            optional: ["volume", "number", "pages", "series", "edition"],
+            required: ["title"]
+        }
+    ),
+    createEntry(
+        "conference",
+        sections.Entry,
+        "An article in a conference proceedings.",
+        {
+            recommended: ["author", "title", "year", "month", "organization", "address", "doi"],
+            optional: ["volume", "number", "pages", "issn"],
+            required: ["author", "title", "booktitle", "year"]
+        }
+    ),
+    createEntry(
+        "inbook",
+        sections.Entry,
+        "A part of a book, which may be a chapter (or section or whatever) and/or a range of pages.",
+        {
+            recommended: ["author", "title", "year", "month", "publisher", "address", "isbn"],
+            optional: ["volume", "number", "pages", "series", "edition"],
+            required: ["author/editor", "title", "chapter/pages", "publisher", "year"]
+        }
+    ),
+    createEntry(
+        "incollection",
+        sections.Entry,
+        "A part of a book having its own title.",
+        {
+            recommended: ["author", "title", "booktitle", "year", "month", "publisher", "address", "isbn"],
+            optional: ["volume", "number", "pages", "series", "edition"],
+            required: ["author", "title", "booktitle", "publisher", "year"]
+        }
+    ),
+    createEntry(
+        "inproceedings",
+        sections.Entry,
+        "An article in a conference proceedings.",
+        {
+            recommended: ["author", "title", "year", "month", "organization", "address", "doi"],
+            optional: ["volume", "number", "pages", "issn"],
+            required: ["author", "title", "booktitle", "year"]
+        }
+    ),
+    createEntry(
+        "manual",
+        sections.Entry,
+        "Technical documentation.",
+        {
+            recommended: ["title", "year", "month", "institution", "doi"],
+            optional: ["edition", "pages", "issn"],
+            required: ["title"]
+        }
+    ),
+    createEntry(
+        "mastersthesis",
+        sections.Entry,
+        "A Master’s thesis.",
+        {
+            recommended: ["title", "year", "month", "institution", "doi"],
+            optional: ["pages", "issn"],
+            required: ["author", "title", "school", "year"]
+        }
+    ),
+    createEntry(
+        "misc",
+        sections.Entry,
+        "Use this type when nothing else fits.",
+        {
+            recommended: ["title", "year", "month"],
+            optional: ["url"],
+            required: []
+        }
+    ),
+    createEntry(
+        "phdthesis",
+        sections.Entry,
+        "A PhD thesis.",
+        {
+            recommended: ["title", "year", "month", "institution", "doi"],
+            optional: ["pages", "issn"],
+            required: ["author", "title", "school", "year"]
+        }
+    ),
+    createEntry(
+        "proceedings",
+        sections.Entry,
+        "The proceedings of a conference.",
+        {
+            recommended: ["year", "month", "organization", "address", "doi"],
+            optional: ["volume", "number", "issn"],
+            required: ["title", "year"]
+        }
+    ),
+    createEntry(
+        "techreport",
+        sections.Entry,
+        "A report published by a school or other institution.",
+        {
+            recommended: ["title", "year", "month", "institution", "doi"],
+            optional: ["pages", "issn"],
+            required: ["author", "title", "institution", "year"]
+        }
+    ),
+    createEntry(
+        "unpublished",
+        sections.Entry,
+        "A document having an author and title, but not formally published.",
+        {
+            recommended: ["author", "title", "year", "month"],
+            optional: ["note"],
+            required: ["author", "title", "note"]
+        }
+    ),
 ];
 
 // FIELDS
