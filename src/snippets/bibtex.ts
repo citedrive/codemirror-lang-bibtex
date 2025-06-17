@@ -1,180 +1,178 @@
-import {sections, createEntry, createField} from "./snippets"
+import {sections} from "./helpers"
 
 // ENTRIES
-export const bibtexEntrySnippets = [
-    createEntry(
-        "article",
-        sections.Entry,
-        "An article from a journal or magazine.",
-        {
+export const bibtexEntries = [
+    {
+        name: "article",
+        type: sections.Entry,
+        description: "An article from a journal or magazine.",
+        fields: {
             recommended: ["author", "title", "year", "month", "journal", "publisher", "doi", "url", "urldate"],
             optional: ["volume", "number", "pages", "issn"],
             required: ["author", "title", "journal", "year"]
         }
-    ),
-    createEntry("book",
-        sections.Entry,
-        "A book with a publisher.",
-        {
+    },
+    {
+        name: "book",
+        type: sections.Entry,
+        description: "A book with a publisher.",
+        fields: {
             recommended: ["author", "title", "year", "month", "publisher", "address", "isbn"],
             optional: ["volume", "number", "pages", "series", "edition"],
             required: ["author", "editor", "title", "publisher", "year"]
         }
-    ),
-    createEntry(
-        "booklet",
-        sections.Entry,
-        "A work that is printed and bound, but without a named publisher or sponsoring institution.",
-        {
+    },
+    {
+        name: "booklet",
+        type: sections.Entry,
+        description: "A work that is printed and bound, but without a named publisher or sponsoring institution.",
+        fields: {
             recommended: ["author", "title", "year", "month", "isbn"],
             optional: ["volume", "number", "pages", "series", "edition"],
             required: ["title"]
         }
-    ),
-    createEntry(
-        "conference",
-        sections.Entry,
-        "An article in a conference proceedings.",
-        {
+    },
+    {
+        name: "conference",
+        type: sections.Entry,
+        description: "An article in a conference proceedings.",
+        fields: {
             recommended: ["author", "title", "year", "month", "organization", "address", "doi"],
             optional: ["volume", "number", "pages", "issn"],
             required: ["author", "title", "booktitle", "year"]
         }
-    ),
-    createEntry(
-        "inbook",
-        sections.Entry,
-        "A part of a book, which may be a chapter (or section or whatever) and/or a range of pages.",
-        {
+    },
+    {
+        name: "inbook",
+        type: sections.Entry,
+        description: "A part of a book, which may be a chapter (or type: section or whatever) and/or a range of pages.",
+        fields: {
             recommended: ["author", "title", "year", "month", "publisher", "address", "isbn"],
             optional: ["volume", "number", "pages", "series", "edition"],
             required: ["author/editor", "title", "chapter/pages", "publisher", "year"]
         }
-    ),
-    createEntry(
-        "incollection",
-        sections.Entry,
-        "A part of a book having its own title.",
-        {
+    },
+    {
+        name: "incollection",
+        type: sections.Entry,
+        description: "A part of a book having its own title.",
+        fields: {
             recommended: ["author", "title", "booktitle", "year", "month", "publisher", "address", "isbn"],
             optional: ["volume", "number", "pages", "series", "edition"],
             required: ["author", "title", "booktitle", "publisher", "year"]
         }
-    ),
-    createEntry(
-        "inproceedings",
-        sections.Entry,
-        "An article in a conference proceedings.",
-        {
+    },
+    {
+        name: "inproceedings",
+        type: sections.Entry,
+        description: "An article in a conference proceedings.",
+        fields: {
             recommended: ["author", "title", "year", "month", "organization", "address", "doi"],
             optional: ["volume", "number", "pages", "issn"],
             required: ["author", "title", "booktitle", "year"]
         }
-    ),
-    createEntry(
-        "manual",
-        sections.Entry,
-        "Technical documentation.",
-        {
+    },
+    {
+        name: "manual",
+        type: sections.Entry,
+        description: "Technical documentation.",
+        fields: {
             recommended: ["title", "year", "month", "institution", "doi"],
             optional: ["edition", "pages", "issn"],
             required: ["title"]
         }
-    ),
-    createEntry(
-        "mastersthesis",
-        sections.Entry,
-        "A Master’s thesis.",
-        {
+    },
+    {
+        name: "mastersthesis",
+        type: sections.Entry,
+        description: "A Master’s thesis.",
+        fields: {
             recommended: ["title", "year", "month", "institution", "doi"],
             optional: ["pages", "issn"],
             required: ["author", "title", "school", "year"]
         }
-    ),
-    createEntry(
-        "misc",
-        sections.Entry,
-        "Use this type when nothing else fits.",
-        {
+    },
+    {
+        name: "misc",
+        type: sections.Entry,
+        description: "Use this type when nothing else fits.",
+        fields: {
             recommended: ["title", "year", "month"],
             optional: ["url"],
             required: []
         }
-    ),
-    createEntry(
-        "phdthesis",
-        sections.Entry,
-        "A PhD thesis.",
-        {
+    },
+    {
+        name: "phdthesis",
+        type: sections.Entry,
+        description: "A PhD thesis.",
+        fields: {
             recommended: ["title", "year", "month", "institution", "doi"],
             optional: ["pages", "issn"],
             required: ["author", "title", "school", "year"]
         }
-    ),
-    createEntry(
-        "proceedings",
-        sections.Entry,
-        "The proceedings of a conference.",
-        {
+    },
+    {
+        name: "proceedings",
+        type: sections.Entry,
+        description: "The proceedings of a conference.",
+        fields: {
             recommended: ["year", "month", "organization", "address", "doi"],
             optional: ["volume", "number", "issn"],
             required: ["title", "year"]
         }
-    ),
-    createEntry(
-        "techreport",
-        sections.Entry,
-        "A report published by a school or other institution.",
-        {
+    },
+    {
+        name: "techreport",
+        type: sections.Entry,
+        description: "A report published by a school or other institution.",
+        fields: {
             recommended: ["title", "year", "month", "institution", "doi"],
             optional: ["pages", "issn"],
             required: ["author", "title", "institution", "year"]
         }
-    ),
-    createEntry(
-        "unpublished",
-        sections.Entry,
-        "A document having an author and title, but not formally published.",
-        {
+    },
+    {
+        name: "unpublished",
+        type: sections.Entry,
+        description: "A document having an author and title, but not formally published.",
+        fields: {
             recommended: ["author", "title", "year", "month"],
             optional: ["note"],
             required: ["author", "title", "note"]
         }
-    ),
+    },
 ];
 
 // FIELDS
-export const bibtexFieldSnippets = [
-    createField("address", sections.Field, "The address of the publisher or other type of institution."),
-    createField("annote", sections.Field, "An annotation."),
-    createField("author", sections.Field, "The name(s) of the author(s)."),
-    createField("booktitle", sections.Field, "The title of the book."),
-    createField("chapter", sections.Field, "The chapter (or section or whatever) number."),
-    createField("crossref", sections.Field, "The database key of the entry being cross referenced."),
-    createField("doi", sections.Field, "The Digital Object Identifier of the work."),
-    createField("edition", sections.Field, "The edition of a book, as an ordinal."),
-    createField("editor", sections.Field, "The name(s) of the editor(s)."),
-    createField("email", sections.Field, "The email address(es) of the author(s)."),
-    createField("howpublished", sections.Field, "How something strange has been published."),
-    createField("institution", sections.Field, "The sponsoring institution of a technical report."),
-    createField("isbn", sections.Field, "The International Standard Book Number of the work."),
-    createField("issn", sections.Field, "The International Standard Serial Number of a periodical."),
-    createField("journal", sections.Field, "The journal name."),
-    createField("key", sections.Field, "The citation key (for use in a `\\cite{}` command)."),
-    createField("keywords", sections.Field, "Keywords that describe the work being cited."),
-    createField("month", sections.Field, "The month in which the work was published or written."),
-    createField("note", sections.Field, "Any additional information that can help the reader."),
-    createField("number", sections.Field, "The number of a journal, magazine, technical report, or of a work in a series."),
-    createField("organization", sections.Field, "The organization that sponsors a conference or that publishes a manual."),
-    createField("pages", sections.Field, "One or more page numbers or range of numbers."),
-    createField("publisher", sections.Field, "The publisher’s name."),
-    createField("school", sections.Field, "The name of the school where a thesis was written."),
-    createField("series", sections.Field, "The name of a series or set of books."),
-    createField("title", sections.Field, "The work’s title."),
-    createField("type", sections.Field, "The type of a technical report."),
-    createField("volume", sections.Field, "The volume of a journal or multivolume book."),
-    createField("year", sections.Field, "The year of publication or written.")
+export const bibtexFields = [
+    { name: "address", type: sections.Field, description: "The address of the publisher or other type of institution." },
+    { name: "annote", type: sections.Field, description: "An annotation." },
+    { name: "author", type: sections.Field, description: "The name(s) of the author(s)." },
+    { name: "booktitle", type: sections.Field, description: "The title of the book." },
+    { name: "chapter", type: sections.Field, description: "The chapter (or section or whatever) number." },
+    { name: "crossref", type: sections.Field, description: "The database key of the entry being cross referenced." },
+    { name: "doi", type: sections.Field, description: "The Digital Object Identifier of the work." },
+    { name: "edition", type: sections.Field, description: "The edition of a book, as an ordinal." },
+    { name: "editor", type: sections.Field, description: "The name(s) of the editor(s)." },
+    { name: "email", type: sections.Field, description: "The email address(es) of the author(s)." },
+    { name: "howpublished", type: sections.Field, description: "How something strange has been published." },
+    { name: "institution", type: sections.Field, description: "The sponsoring institution of a technical report." },
+    { name: "isbn", type: sections.Field, description: "The International Standard Book Number of the work." },
+    { name: "issn", type: sections.Field, description: "The International Standard Serial Number of a periodical." },
+    { name: "journal", type: sections.Field, description: "The journal name." },
+    { name: "key", type: sections.Field, description: "The citation key (for use in a `\\cite{}` command)." },
+    { name: "keywords", type: sections.Field, description: "Keywords that describe the work being cited." },
+    { name: "month", type: sections.Field, description: "The month in which the work was published or written." },
+    { name: "note", type: sections.Field, description: "Any additional information that can help the reader." },
+    { name: "number", type: sections.Field, description: "The number of a journal, magazine, technical report, or of a work in a series." },
+    { name: "organization", type: sections.Field, description: "The organization that sponsors a conference or that publishes a manual." },
+    { name: "pages", type: sections.Field, description: "One or more page numbers or range of numbers." },
+    { name: "publisher", type: sections.Field, description: "The publisher’s name." },
+    { name: "school", type: sections.Field, description: "The name of the school where a thesis was written." },
+    { name: "series", type: sections.Field, description: "The name of a series or set of books." },
+    { name: "title", type: sections.Field, description: "The work’s title." },
+    { name: "type", type: sections.Field, description: "The type of a technical report." },
+    { name: "volume", type: sections.Field, description: "The volume of a journal or multivolume book." },
+    { name: "year", type: sections.Field, description: "The year of publication or written." }
 ];
-
-/// A complete ([opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin)) collection of BibTeX autocomplete [snippets](#autocomplete.snippet).
-export const bibtexSnippets = bibtexEntrySnippets.concat(bibtexFieldSnippets);

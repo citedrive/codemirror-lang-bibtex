@@ -46,37 +46,37 @@ export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, 
 /// The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
 ///
 /// Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. Both the snippet [render config](#autocomplete.CompletionSection) and exclusion of certain snippets are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/vaisriv/codemirror-lang-bibtex/issues) welcome).
-export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean} = {biblatex: false, smartSuggest: true}) {
+export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snipRecs?: boolean} = {biblatex: false, smartSuggest: true, snipRecs: true}) {
     // allow user to only specify config options that they care about
     // it's a little hack-y because we're defining the defaults twice, but the defaults in the function signature are there for the documentation
-    const conf = { biblatex: false, smartSuggest: true, ...config };
+    const conf = { biblatex: false, smartSuggest: true, snipRecs: true, ...config };
 
     // setup language/autocompletion behavior based on user config
-    let lang = conf.biblatex ? biblatexLanguage : bibtexLanguage;
-    let snippets = conf.biblatex
-        ? { entries: biblatexEntrySnippets, fields: biblatexFieldSnippets, all: biblatexSnippets }
-        : { entries: bibtexEntrySnippets, fields: bibtexFieldSnippets, all: bibtexSnippets };
-    let snippetExtension = conf.smartSuggest
+    let bibLanguage = conf.biblatex ? biblatexLanguage : bibtexLanguage;
+    let bibSnippets = conf.biblatex
+        ? biblatexSnippets
+        : bibtexSnippets;
+    let bibSnippetExtension = conf.smartSuggest
         ? [
-            bibtexLanguage.data.of({
-                autocomplete: ifIn(["EntryValue"], completeFromList(snippets.fields))
+            bibLanguage.data.of({
+                autocomplete: ifIn(["EntryValue"], completeFromList(bibSnippets.fields))
             }),
-            bibtexLanguage.data.of({
-                autocomplete: ifNotIn(["EntryValue"], completeFromList(snippets.entries))
+            bibLanguage.data.of({
+                autocomplete: ifNotIn(["EntryValue"], completeFromList(bibSnippets.entries))
             }),
         ]
         : [
-            bibtexLanguage.data.of({
-                autocomplete: completeFromList(snippets.all)
+            bibLanguage.data.of({
+                autocomplete: completeFromList(bibSnippets.all)
             }),
         ];
 
     // actually create the language object
     return new LanguageSupport(
-        lang,
+        bibLanguage,
         [
-            snippetExtension,
-            bibtexCompletion
+            bibtexCompletion,
+            bibSnippetExtension
         ]
     );
 }
