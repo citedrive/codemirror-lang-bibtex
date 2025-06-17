@@ -3,8 +3,7 @@ import {styleTags, tags as t} from "@lezer/highlight"
 import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp} from "@codemirror/language"
 import {autocompletion, completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
 import {bibtexCompletion} from "./completion"
-import {bibtexSnippets, bibtexEntrySnippets, bibtexFieldSnippets,
-    biblatexSnippets, biblatexEntrySnippets, biblatexFieldSnippets} from "./snippets/index"
+import { bibtexEntries, bibtexFields, biblatexEntries, biblatexFields, createEntry, createField } from "./snippets/index"
 
 /// BibTeX Language configuration with [syntax highlighting](#language.syntaxHighlighting), [folding](#language.foldNodeProp), and [indentation](#language.indentNodeProp).
 export const bibtexLanguage = LRLanguage.define({
@@ -41,22 +40,40 @@ export const bibtexLanguage = LRLanguage.define({
 /// BibLaTeX Language configuration as a [dialect](https://lezer.codemirror.net/docs/ref/#lr.ParserConfig.dialect) of [BibTeX](#lang-bibtex.bibtexLanguage).
 export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, "BibLaTeX");
 
-/// [BibTeX](#lang-bibtex.bibtexLanguage) language support with optional [BibLaTeX](#lang-bibtex.biblatexLanguage) dialect support, autocompletion [configuration](#lang-bibtex.bibtexCompletion), and both [BibTeX snippets](#lang-bibtex.bibtexSnippets) and [BibLaTeX snippets](#lang-bibtex.biblatexSnippets) that are optionally suggested based on the editor [context](#autocomplete.CompletionContext).
+/// [BibTeX](#lang-bibtex.bibtexLanguage) language support with [BibLaTeX](#lang-bibtex.biblatexLanguage) dialect support, autocompletion [configuration](#lang-bibtex.bibtexCompletion), and [snippets](#autocomplete.snippet) for both BibTeX and BibLaTeX that are suggested based on the editor [context](#autocomplete.CompletionContext).
 ///
-/// The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
-///
-/// Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. Both the snippet [render config](#autocomplete.CompletionSection) and exclusion of certain snippets are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/vaisriv/codemirror-lang-bibtex/issues) welcome).
-export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snipRecs?: boolean} = {biblatex: false, smartSuggest: true, snipRecs: true}) {
+/// There are configuration options for the following:
+/// - **BibTeX** vs **BibLaTeX** language support: defaults to BibTeX
+/// - **Snippet Smart-Suggestion:** The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article = {...}`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
+/// - **Opinionated Snippets**: Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. The snippet [render config](#autocomplete.CompletionSection), exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/vaisriv/codemirror-lang-bibtex/issues) are welcome!).
+export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean} = {biblatex: false, smartSuggest: true, snippetRecs: true}) {
     // allow user to only specify config options that they care about
     // it's a little hack-y because we're defining the defaults twice, but the defaults in the function signature are there for the documentation
-    const conf = { biblatex: false, smartSuggest: true, snipRecs: true, ...config };
+    let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, ...config };
+
+    // create snippets
+    const bibtexEntrySnippets = bibtexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
+    const bibtexFieldSnippets = bibtexFields.map(field => createField(field.name, field.type, field.description));
+    const biblatexEntrySnippets = biblatexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
+    const biblatexFieldSnippets = biblatexFields.map(field => createField(field.name, field.type, field.description));
+
+    const bibtexSnippets = {
+        entries: bibtexEntrySnippets,
+        fields: bibtexFieldSnippets,
+        all: bibtexEntrySnippets.concat(bibtexFieldSnippets)
+    };
+    const biblatexSnippets = {
+        entries: biblatexEntrySnippets,
+        fields: biblatexFieldSnippets,
+        all: biblatexEntrySnippets.concat(biblatexFieldSnippets)
+    };
 
     // setup language/autocompletion behavior based on user config
-    let bibLanguage = conf.biblatex ? biblatexLanguage : bibtexLanguage;
-    let bibSnippets = conf.biblatex
+    let bibLanguage = userConfig.biblatex ? biblatexLanguage : bibtexLanguage;
+    let bibSnippets = userConfig.biblatex
         ? biblatexSnippets
         : bibtexSnippets;
-    let bibSnippetExtension = conf.smartSuggest
+    let bibSnippetExtension = userConfig.smartSuggest
         ? [
             bibLanguage.data.of({
                 autocomplete: ifIn(["EntryValue"], completeFromList(bibSnippets.fields))

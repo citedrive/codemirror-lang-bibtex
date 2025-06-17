@@ -1,4 +1,4 @@
-import {sections} from "./helpers"
+import {sections} from "./snippets"
 
 // ENTRIES
 export const bibtexEntries = [
@@ -7,7 +7,7 @@ export const bibtexEntries = [
         type: sections.Entry,
         description: "An article from a journal or magazine.",
         fields: {
-            recommended: ["author", "title", "year", "month", "journal", "publisher", "doi", "url", "urldate"],
+            recommended: ["author", "title", "year", "month", "journal", "publisher", "doi", "url"],
             optional: ["volume", "number", "pages", "issn"],
             required: ["author", "title", "journal", "year"]
         }
@@ -173,6 +173,7 @@ export const bibtexFields = [
     { name: "series", type: sections.Field, description: "The name of a series or set of books." },
     { name: "title", type: sections.Field, description: "The work’s title." },
     { name: "type", type: sections.Field, description: "The type of a technical report." },
+    { name: "url", type: sections.Field, description: "The url of an online publication." },
     { name: "volume", type: sections.Field, description: "The volume of a journal or multivolume book." },
     { name: "year", type: sections.Field, description: "The year of publication or written." }
 ];

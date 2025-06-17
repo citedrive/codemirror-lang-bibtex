@@ -1,66 +1,534 @@
-import {sections} from "./helpers"
+import {sections} from "./snippets"
 
 // ENTRIES
 export const biblatexEntries = [
-    // // Recommended Entries
-    // createEntry("article", sections.Recommended, "An article in a periodical.", ["author", "title", "journal", "date"]),
-    // createEntry("book", sections.Recommended, "A single-volume book.", ["author", "title", "date"]),
-    // createEntry("booklet", sections.Recommended, "A book-like work without a formal publisher.", ["author", "title", "date"]),
-    // createEntry("collection", sections.Recommended, "A single-volume collection.", ["editor", "title", "date"]),
-    // createEntry("dataset", sections.Recommended, "A data set or similar collection of raw data.", ["editor", "title", "date"]),
-    // createEntry("manual", sections.Recommended, "Technical or other documentation.", ["author", "title", "date"]),
-    // createEntry("online", sections.Recommended, "An online resource.", ["author", "title", "date", "url"]),
-    // createEntry("patent", sections.Recommended, "A patent or patent request.", ["author", "title", "number", "date"]),
-    // createEntry("periodical", sections.Recommended, "A complete issue of a periodical.", ["editor", "title", "date"]),
-    // createEntry("proceedings", sections.Recommended, "A single-volume conference proceedings.", ["title", "date"]),
-    // createEntry("reference", sections.Recommended, "A single-volume work of reference.", ["editor", "title", "date"]),
-    // createEntry("report", sections.Recommended, "A report of some kind published by an institution.", ["author", "title", "type", "institution", "date"]),
-    // createEntry("software", sections.Recommended, "A piece of computer software.", ["author", "title", "date"]),
-    // createEntry("thesis", sections.Recommended, "A thesis written for an educational institution.", ["author", "title", "type", "institution", "date"]),
-    //
-    // // Optional Entries
-    // createEntry("artwork", sections.Optional, "A work of the visual arts.", ["author", "title", "date"]),
-    // createEntry("audio", sections.Optional, "An audio recording.", ["author", "title", "date"]),
-    // createEntry("bookinbook", sections.Optional, "An <@inbook> that was originally published as its own work.", ["author", "title", "booktitle", "date"]),
-    // createEntry("commentary", sections.Optional, "A legal or other commentary.", ["author", "title", "date"]),
-    // createEntry("image", sections.Optional, "An image or similar media.", ["author", "title", "date"]),
-    // createEntry("inbook", sections.Optional, "A part of a book which is its own titled work.", ["author", "title", "booktitle", "date"]),
-    // createEntry("incollection", sections.Optional, "A contribution to a collection which is its own titled work.", ["author", "title", "editor", "booktitle", "date"]),
-    // createEntry("inproceedings", sections.Optional, "An article in a conference proceedings.", ["author", "title", "booktitle", "date"]),
-    // createEntry("inreference", sections.Optional, "An article in a work of reference.", ["editor", "title", "date"]),
-    // createEntry("jurisdiction", sections.Optional, "A court decision, recording, or similar.", ["author", "title", "date"]),
-    // createEntry("legal", sections.Optional, "A legal document such as a treaty.", ["organization", "title", "date"]),
-    // createEntry("legislation", sections.Optional, "A law, bill, proposal, or similar.", ["organization", "title", "date"]),
-    // createEntry("letter", sections.Optional, "Personal correspondence.", ["author", "title", "date"]),
-    // createEntry("misc", sections.Special, "A fallback for entries which do not fit in other categories.", ["author", "title", "date"]),
-    // createEntry("movie", sections.Optional, "A motion picture.", ["publisher", "title", "date"]),
-    // createEntry("music", sections.Optional, "A musical recording.", ["publisher", "title", "date"]),
-    // createEntry("mvbook", sections.Optional, "A multi-volume book.", ["author", "title", "date"]),
-    // createEntry("mvcollection", sections.Optional, "A multi-volume collection.", ["editor", "title", "date"]),
-    // createEntry("mvproceedings", sections.Optional, "A multi-volume conference proceedings.", ["title", "date"]),
-    // createEntry("mvreference", sections.Optional, "A multi-volume work of reference.", ["editor", "title", "date"]),
-    // createEntry("performance", sections.Optional, "A work of the performing arts.", ["organization", "title", "date"]),
-    // createEntry("review", sections.Optional, "A review of some other work.", ["author", "title", "journal", "date"]),
-    // createEntry("standard", sections.Optional, "A National or Institutional standard issued by a standards body.", ["organization", "title", "date"]),
-    // createEntry("suppbook", sections.Optional, "Supplemental material in a book.", ["author", "title", "booktitle", "date"]),
-    // createEntry("suppcollection", sections.Optional, "Supplemental material in a collection.", ["editor", "title", "date"]),
-    // createEntry("suppperiodical", sections.Optional, "Supplemental material in a periodical.", ["editor", "title", "date"]),
-    // createEntry("unpublished", sections.Optional, "A work which has not been formally published.", ["author", "title", "date"]),
-    // createEntry("video", sections.Optional, "An audiovisual recording.", ["author", "title", "date"]),
-    //
-    // // Special Entries
-    // createEntry("bibnote", sections.Special, "Used by the `notes2bib` package (and others) to place notes within the bibliography.", ["note"]),
-    // createEntry("custom", sections.Special, "Custom types for special bibliography styles.", []),
-    // createEntry("set", sections.Special, "An entry set.", ["entryset"]),
-    // createEntry("xdata", sections.Special, "Holds data which may be inherited by other entries using the <xdata> field.", []),
-    //
-    // // Entry Aliases (mostly for backwards compatibility with BibTeX)
-    // createEntry("conference", sections.Alias, "An alias for <@inproceedings>.", ["author", "title", "booktitle", "date"]),
-    // createEntry("electronic", sections.Alias, "An alias for <@online>.", ["author", "title", "date", "url"]),
-    // createEntry("mastersthesis", sections.Alias, "An alias for <@thesis>.", ["author", "title", "institution", "date"]),
-    // createEntry("phdthesis", sections.Alias, "An alias for <@thesis>.", ["author", "title", "institution", "date"]),
-    // createEntry("techreport", sections.Alias, "An alias for <@report>.", ["author", "title", "institution", "date"]),
-    // createEntry("www", sections.Alias, "An alias for <@online>.", ["author", "title", "date", "url"]),
+    // Recommended Entries
+    {
+        name: "article",
+        type: sections.Recommended,
+        description: "An article in a periodical.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "journal", "date"]
+        }
+    },
+    {
+        name: "book",
+        type: sections.Recommended,
+        description: "A single-volume book.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "booklet",
+        type: sections.Recommended,
+        description: "A book-like work without a formal publisher.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "collection",
+        type: sections.Recommended,
+        description: "A single-volume collection.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "dataset",
+        type: sections.Recommended,
+        description: "A data set or similar collection of raw data.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "manual",
+        type: sections.Recommended,
+        description: "Technical or other documentation.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "online",
+        type: sections.Recommended,
+        description: "An online resource.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date", "url"]
+        }
+    },
+    {
+        name: "patent",
+        type: sections.Recommended,
+        description: "A patent or patent request.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "number", "date"]
+        }
+    },
+    {
+        name: "periodical",
+        type: sections.Recommended,
+        description: "A complete issue of a periodical.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "proceedings",
+        type: sections.Recommended,
+        description: "A single-volume conference proceedings.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["title", "date"]
+        }
+    },
+    {
+        name: "reference",
+        type: sections.Recommended,
+        description: "A single-volume work of reference.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "report",
+        type: sections.Recommended,
+        description: "A report of some kind published by an institution.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "type", "institution", "date"]
+        }
+    },
+    {
+        name: "software",
+        type: sections.Recommended,
+        description: "A piece of computer software.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "thesis",
+        type: sections.Recommended,
+        description: "A thesis written for an educational institution.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "type", "institution", "date"]
+        }
+    },
+
+    // Optional Entries
+    {
+        name: "artwork",
+        type: sections.Optional,
+        description: "A work of the visual arts.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "audio",
+        type: sections.Optional,
+        description: "An audio recording.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "bookinbook",
+        type: sections.Optional,
+        description: "An <@inbook> that was originally published as its own work.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "booktitle", "date"]
+        }
+    },
+    {
+        name: "commentary",
+        type: sections.Optional,
+        description: "A legal or other commentary.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "image",
+        type: sections.Optional,
+        description: "An image or similar media.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "inbook",
+        type: sections.Optional,
+        description: "A part of a book which is its own titled work.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "booktitle", "date"]
+        }
+    },
+    {
+        name: "incollection",
+        type: sections.Optional,
+        description: "A contribution to a collection which is its own titled work.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "editor", "booktitle", "date"]
+        }
+    },
+    {
+        name: "inproceedings",
+        type: sections.Optional,
+        description: "An article in a conference proceedings.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "booktitle", "date"]
+        }
+    },
+    {
+        name: "inreference",
+        type: sections.Optional,
+        description: "An article in a work of reference.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "jurisdiction",
+        type: sections.Optional,
+        description: "A court decision, recording, or similar.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "legal",
+        type: sections.Optional,
+        description: "A legal document such as a treaty.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["organization", "title", "date"]
+        }
+    },
+    {
+        name: "legislation",
+        type: sections.Optional,
+        description: "A law, bill, proposal, or similar.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["organization", "title", "date"]
+        }
+    },
+    {
+        name: "letter",
+        type: sections.Optional,
+        description: "Personal correspondence.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "misc",
+        type: sections.Special,
+        description: "A fallback for entries which do not fit in other categories.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "movie",
+        type: sections.Optional,
+        description: "A motion picture.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["publisher", "title", "date"]
+        }
+    },
+    {
+        name: "music",
+        type: sections.Optional,
+        description: "A musical recording.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["publisher", "title", "date"]
+        }
+    },
+    {
+        name: "mvbook",
+        type: sections.Optional,
+        description: "A multi-volume book.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "mvcollection",
+        type: sections.Optional,
+        description: "A multi-volume collection.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "mvproceedings",
+        type: sections.Optional,
+        description: "A multi-volume conference proceedings.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["title", "date"]
+        }
+    },
+    {
+        name: "mvreference",
+        type: sections.Optional,
+        description: "A multi-volume work of reference.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "performance",
+        type: sections.Optional,
+        description: "A work of the performing arts.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["organization", "title", "date"]
+        }
+    },
+    {
+        name: "review",
+        type: sections.Optional,
+        description: "A review of some other work.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "journal", "date"]
+        }
+    },
+    {
+        name: "standard",
+        type: sections.Optional,
+        description: "A National or Institutional standard issued by a standards body.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["organization", "title", "date"]
+        }
+    },
+    {
+        name: "suppbook",
+        type: sections.Optional,
+        description: "Supplemental material in a book.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "booktitle", "date"]
+        }
+    },
+    {
+        name: "suppcollection",
+        type: sections.Optional,
+        description: "Supplemental material in a collection.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "suppperiodical",
+        type: sections.Optional,
+        description: "Supplemental material in a periodical.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["editor", "title", "date"]
+        }
+    },
+    {
+        name: "unpublished",
+        type: sections.Optional,
+        description: "A work which has not been formally published.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+    {
+        name: "video",
+        type: sections.Optional,
+        description: "An audiovisual recording.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date"]
+        }
+    },
+
+    // Special Entries
+    {
+        name: "bibnote",
+        type: sections.Special,
+        description: "Used by the `notes2bib` package (and others) to place notes within the bibliography.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["note"]
+        }
+    },
+    {
+        name: "custom",
+        type: sections.Special,
+        description: "Custom types for special bibliography styles.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: []
+        }
+    },
+    {
+        name: "set",
+        type: sections.Special,
+        description: "An entry set.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["entryset"]
+        }
+    },
+    {
+        name: "xdata",
+        type: sections.Special,
+        description: "Holds data which may be inherited by other entries using the <xdata> field.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: []
+        }
+    },
+
+    // Entry Aliases (mostly for backwards compatibility with BibTeX)
+    {
+        name: "conference",
+        type: sections.Alias,
+        description: "An alias for <@inproceedings>.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "booktitle", "date"]
+        }
+    },
+    {
+        name: "electronic",
+        type: sections.Alias,
+        description: "An alias for <@online>.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date", "url"]
+        }
+    },
+    {
+        name: "mastersthesis",
+        type: sections.Alias,
+        description: "An alias for <@thesis>.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "institution", "date"]
+        }
+    },
+    {
+        name: "phdthesis",
+        type: sections.Alias,
+        description: "An alias for <@thesis>.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "institution", "date"]
+        }
+    },
+    {
+        name: "techreport",
+        type: sections.Alias,
+        description: "An alias for <@report>.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "institution", "date"]
+        }
+    },
+    {
+        name: "www",
+        type: sections.Alias,
+        description: "An alias for <@online>.",
+        fields: {
+            recommended: [],
+            optional: [],
+            required: ["author", "title", "date", "url"]
+        }
+    },
 ];
 
 // FIELDS
@@ -165,6 +633,7 @@ export const biblatexFields = [
     // WARN: opinion: exclude `month` and `year` fields as the user gets significantly more functionality from the `date` field
     // { name: "month", type: sections.Optional, description: "The month of publication." },
     // { name: "year", type: sections.Optional, description: "The year of publication." },
+
     // Special Fields
     { name: "crossref", type: sections.Special, description: "An entry key for the cross-referencing feature." },
     { name: "entryset", type: sections.Special, description: "A set of entry keys." },
@@ -190,6 +659,7 @@ export const biblatexFields = [
     // { name: "sortyear", type: sections.Special, description: "A year used to modify the sorting order of the bibliography." },
     // WARN: `execute` allows arbitrary LaTeX code execution when building file, don't necessarily want users having access to this
     // { name: "execute", type: sections.Special, description: "Arbitrary LaTeX code to be executed." },
+
     // Field Aliases (mostly for backwards compatibility with BibTeX)
     { name: "address", type: sections.Alias, description: "An alias for <location>." },
     { name: "annote", type: sections.Alias, description: "An alias for <annotation>." },
