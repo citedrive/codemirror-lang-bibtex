@@ -1,23 +1,21 @@
-import {syntaxTree} from "@codemirror/language";
 import {linter} from "@codemirror/lint";
+import { tidy } from "bibtex-tidy";
 
-// import { tidy } from "bibtex-tidy";
-
+/// BibTeX [syntax linter](#lint.Diagnostic).
 export const bibtexLinter = linter(view => {
     let diagnostics = [];
-    syntaxTree(view.state).cursor().iterate(node => {
-        let badSyntax = {
-            isBad: node.name === "FieldValue",
-            start: node.from,
-            end: node.to
-        };
-
-        if (badSyntax.isBad) diagnostics.push({
-            from: badSyntax.start,
-            to: badSyntax.end,
+    let currentDocText = view.state.doc.toString();
+    try {
+        let tidyOutput = tidy(currentDocText, {modify: false});
+    } catch (err) {
+        let errNode = view.domAtPos(err.pos);
+        diagnostics.push({
+            from: err.pos,
+            to: view.state.toText(currentDocText).lineAt(err.pos).to,
             severity: "error",
-            message: "Invalid syntax"
+            message: "Invalid BibTeX Syntax"
         });
-    });
+    };
     return diagnostics;
 });
+

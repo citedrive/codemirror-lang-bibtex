@@ -47,10 +47,11 @@ export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, 
 /// - **BibTeX** vs **BibLaTeX** language support: defaults to BibTeX
 /// - **Snippet Smart-Suggestion:** The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article = {...}`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
 /// - **Opinionated Snippets**: Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. The snippet [render config](#autocomplete.CompletionSection), exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/vaisriv/codemirror-lang-bibtex/issues) are welcome!).
-export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, lintSyntax?: boolean} = {biblatex: false, smartSuggest: true, snippetRecs: true, lintSyntax: true}) {
+/// - **Syntax Linting**: Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to [bibtex-tidy](https://github.com/flamingtempura/bibtex-tidy).
+export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, syntaxLinter?: boolean} = {biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true}) {
     // allow user to only specify config options that they care about
     // it's a little hack-y because we're defining the defaults twice, but the defaults in the function signature are there for the documentation
-    let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, lintSyntax: true, ...config };
+    let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, ...config };
 
     // create snippets
     const bibtexEntrySnippets = bibtexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
@@ -89,7 +90,7 @@ export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snip
             }),
         ];
 
-    let bibExtensions = userConfig.lintSyntax
+    let bibExtensions = userConfig.syntaxLinter
         ? [bibtexLinter, bibtexCompletion, bibSnippetExtension]
         : [bibtexCompletion, bibSnippetExtension];
 

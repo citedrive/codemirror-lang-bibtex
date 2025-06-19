@@ -41,3 +41,5 @@ const view = new EditorView({
 @biblatexLanguage
 
 @bibtexCompletion
+
+@bibtexLinter
