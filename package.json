@@ -3,11 +3,11 @@
   "version": "6.0.1",
   "license": "MIT",
   "description": "BibTeX language support for CodeMirror",
-  "homepage": "https://github.com/vaisriv/codemirror-lang-bibtex#readme",
-  "bugs": "https://github.com/vaisriv/codemirror-lang-bibtex/issues",
+  "homepage": "https://github.com/citedrive/lang-bibtex#readme",
+  "bugs": "https://github.com/citedrive/lang-bibtex/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vaisriv/codemirror-lang-bibtex.git"
+    "url": "git+https://github.com/citedrive/lang-bibtex.git"
   },
   "keywords": [
     "editor",
@@ -36,7 +36,8 @@
     "@codemirror/lint": "^6.0.0",
     "@codemirror/state": "^6.0.0",
     "@lezer/common": "^1.0.0",
-    "@lezer/go": "^1.0.0"
+    "@lezer/go": "^1.0.0",
+    "bibtex-tidy": "github:flamingtempura/bibtex-tidy#83734f920a28cc69b680d8a1041d48ec8379d5ef"
   },
   "devDependencies": {
     "@codemirror/buildhelper": "^1.0.0",

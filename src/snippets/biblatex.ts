@@ -9,7 +9,7 @@ export const biblatexEntries = [
         description: "An article in a periodical.",
         fields: {
             recommended: ["author", "title", "journaltitle", "date"],
-            optional: ["subtitle", "volume", "number", "pages", "eid", "month", "note", "issn", "doi", "url", "eprint"],
+            optional: ["subtitle", "volume", "number", "pages", "eid", "note", "issn", "doi", "url", "eprint"],
             required: ["author", "title", "journaltitle", "date"]
         }
     },
@@ -19,7 +19,7 @@ export const biblatexEntries = [
         description: "A single-volume book.",
         fields: {
             recommended: ["author", "editor", "title", "publisher", "location", "date"],
-            optional: ["subtitle", "edition", "series", "volume", "number", "month", "isbn", "note", "doi", "url"],
+            optional: ["subtitle", "edition", "series", "volume", "number", "isbn", "note", "doi", "url"],
             required: ["author", "title", "date"]
         }
     },
@@ -29,7 +29,7 @@ export const biblatexEntries = [
         description: "A book-like work without a formal publisher.",
         fields: {
             recommended: ["author", "title", "howpublished", "date"],
-            optional: ["subtitle", "address", "edition", "month", "note", "url", "doi"],
+            optional: ["subtitle", "address", "edition", "note", "url", "doi"],
             required: ["author", "title", "date"]
         }
     },
@@ -39,7 +39,7 @@ export const biblatexEntries = [
         description: "A single-volume collection.",
         fields: {
             recommended: ["editor", "title", "publisher", "location", "date"],
-            optional: ["subtitle", "edition", "series", "volume", "number", "month", "note", "doi", "url"],
+            optional: ["subtitle", "edition", "series", "volume", "number", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -59,7 +59,7 @@ export const biblatexEntries = [
         description: "Technical or other documentation.",
         fields: {
             recommended: ["author", "title", "date"],
-            optional: ["subtitle", "edition", "organization", "address", "month", "note", "doi", "url"],
+            optional: ["subtitle", "edition", "organization", "address", "note", "doi", "url"],
             required: ["author", "title", "date"]
         }
     },
@@ -79,7 +79,7 @@ export const biblatexEntries = [
         description: "A patent or patent request.",
         fields: {
             recommended: ["author", "title", "number", "date"],
-            optional: ["subtitle", "holder", "location", "month", "day", "note", "doi", "url"],
+            optional: ["subtitle", "holder", "location", "day", "note", "doi", "url"],
             required: ["author", "title", "number", "date"]
         }
     },
@@ -89,7 +89,7 @@ export const biblatexEntries = [
         description: "A complete issue of a periodical.",
         fields: {
             recommended: ["editor", "title", "publisher", "location", "date"],
-            optional: ["subtitle", "volume", "number", "series", "month", "note", "issn", "doi", "url"],
+            optional: ["subtitle", "volume", "number", "series", "note", "issn", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -99,7 +99,7 @@ export const biblatexEntries = [
         description: "A single-volume conference proceedings.",
         fields: {
             recommended: ["title", "publisher", "location", "date"],
-            optional: ["subtitle", "editor", "organization", "series", "volume", "number", "edition", "month", "note", "doi", "url"],
+            optional: ["subtitle", "editor", "organization", "series", "volume", "number", "edition", "note", "doi", "url"],
             required: ["title", "date"]
         }
     },
@@ -109,7 +109,7 @@ export const biblatexEntries = [
         description: "A single-volume work of reference.",
         fields: {
             recommended: ["editor", "title", "publisher", "location", "date"],
-            optional: ["subtitle", "edition", "series", "volume", "number", "month", "note", "doi", "url"],
+            optional: ["subtitle", "edition", "series", "volume", "number", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -119,7 +119,7 @@ export const biblatexEntries = [
         description: "A report of some kind published by an institution.",
         fields: {
             recommended: ["author", "title", "type", "institution", "location", "date"],
-            optional: ["subtitle", "series", "number", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "number", "note", "doi", "url"],
             required: ["author", "title", "type", "institution", "date"]
         }
     },
@@ -139,7 +139,7 @@ export const biblatexEntries = [
         description: "A thesis written for an educational institution.",
         fields: {
             recommended: ["author", "title", "type", "institution", "location", "date"],
-            optional: ["subtitle", "series", "address", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "address", "note", "doi", "url"],
             required: ["author", "title", "type", "institution", "date"]
         }
     },
@@ -171,7 +171,7 @@ export const biblatexEntries = [
         description: "An <@inbook> that was originally published as its own work.",
         fields: {
             recommended: ["author", "title", "booktitle", "publisher", "location", "date"],
-            optional: ["subtitle", "series", "volume", "number", "edition", "month", "note", "url", "doi"],
+            optional: ["subtitle", "series", "volume", "number", "edition", "note", "url", "doi"],
             required: ["author", "title", "booktitle", "date"]
         }
     },
@@ -181,7 +181,7 @@ export const biblatexEntries = [
         description: "A legal or other commentary.",
         fields: {
             recommended: ["author", "title", "date"],
-            optional: ["subtitle", "journaltitle", "volume", "number", "pages", "month", "note", "doi", "url"],
+            optional: ["subtitle", "journaltitle", "volume", "number", "pages", "note", "doi", "url"],
             required: ["author", "title", "date"]
         }
     },
@@ -201,7 +201,7 @@ export const biblatexEntries = [
         description: "A part of a book which is its own titled work.",
         fields: {
             recommended: ["author", "title", "booktitle", "publisher", "location", "date"],
-            optional: ["subtitle", "volume", "part", "pages", "edition", "series", "month", "doi", "url", "note"],
+            optional: ["subtitle", "volume", "part", "pages", "edition", "series", "doi", "url", "note"],
             required: ["author", "title", "booktitle", "date"]
         }
     },
@@ -211,7 +211,7 @@ export const biblatexEntries = [
         description: "A contribution to a collection which is its own titled work.",
         fields: {
             recommended: ["author", "title", "editor", "booktitle", "publisher", "location", "date"],
-            optional: ["subtitle", "series", "volume", "number", "edition", "pages", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "volume", "number", "edition", "pages", "note", "doi", "url"],
             required: ["author", "title", "editor", "booktitle", "date"]
         }
     },
@@ -221,7 +221,7 @@ export const biblatexEntries = [
         description: "An article in a conference proceedings.",
         fields: {
             recommended: ["author", "title", "booktitle", "publisher", "location", "date"],
-            optional: ["subtitle", "editor", "pages", "organization", "series", "volume", "number", "month", "note", "doi", "url"],
+            optional: ["subtitle", "editor", "pages", "organization", "series", "volume", "number", "note", "doi", "url"],
             required: ["author", "title", "booktitle", "date"]
         }
     },
@@ -231,7 +231,7 @@ export const biblatexEntries = [
         description: "An article in a work of reference.",
         fields: {
             recommended: ["editor", "title", "booktitle", "publisher", "location", "date"],
-            optional: ["subtitle", "series", "volume", "number", "edition", "pages", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "volume", "number", "edition", "pages", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -311,7 +311,7 @@ export const biblatexEntries = [
         description: "A multi-volume book.",
         fields: {
             recommended: ["author", "title", "series", "volume", "date"],
-            optional: ["publisher", "location", "edition", "month", "note", "doi", "url"],
+            optional: ["publisher", "location", "edition", "note", "doi", "url"],
             required: ["author", "title", "date"]
         }
     },
@@ -321,7 +321,7 @@ export const biblatexEntries = [
         description: "A multi-volume collection.",
         fields: {
             recommended: ["editor", "title", "series", "volume", "date"],
-            optional: ["publisher", "location", "edition", "month", "note", "doi", "url"],
+            optional: ["publisher", "location", "edition", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -331,7 +331,7 @@ export const biblatexEntries = [
         description: "A multi-volume conference proceedings.",
         fields: {
             recommended: ["title", "series", "volume", "date"],
-            optional: ["editor", "publisher", "location", "edition", "organization", "month", "note", "doi", "url"],
+            optional: ["editor", "publisher", "location", "edition", "organization", "note", "doi", "url"],
             required: ["title", "date"]
         }
     },
@@ -341,7 +341,7 @@ export const biblatexEntries = [
         description: "A multi-volume work of reference.",
         fields: {
             recommended: ["editor", "title", "series", "volume", "date"],
-            optional: ["publisher", "location", "edition", "month", "note", "doi", "url"],
+            optional: ["publisher", "location", "edition", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -361,7 +361,7 @@ export const biblatexEntries = [
         description: "A review of some other work.",
         fields: {
             recommended: ["author", "title", "journaltitle", "date"],
-            optional: ["subtitle", "journal", "volume", "number", "pages", "month", "doi", "url", "note"],
+            optional: ["subtitle", "journal", "volume", "number", "pages", "doi", "url", "note"],
             required: ["author", "title", "journaltitle", "date"]
         }
     },
@@ -381,7 +381,7 @@ export const biblatexEntries = [
         description: "Supplemental material in a book.",
         fields: {
             recommended: ["author", "title", "booktitle", "publisher", "location", "date"],
-            optional: ["subtitle", "series", "volume", "number", "edition", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "volume", "number", "edition", "note", "doi", "url"],
             required: ["author", "title", "booktitle", "date"]
         }
     },
@@ -391,7 +391,7 @@ export const biblatexEntries = [
         description: "Supplemental material in a collection.",
         fields: {
             recommended: ["editor", "title", "publisher", "location", "date"],
-            optional: ["subtitle", "series", "volume", "number", "edition", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "volume", "number", "edition", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },
@@ -401,7 +401,7 @@ export const biblatexEntries = [
         description: "Supplemental material in a periodical.",
         fields: {
             recommended: ["editor", "title", "journaltitle", "volume", "number", "date"],
-            optional: ["subtitle", "series", "month", "note", "doi", "url"],
+            optional: ["subtitle", "series", "note", "doi", "url"],
             required: ["editor", "title", "date"]
         }
     },

@@ -2,7 +2,7 @@
 
 # codemirror-lang-bibtex
 
-[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/vaisriv/codemirror-lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/vaisriv/codemirror-lang-bibtex/blob/main/CHANGELOG.md) ]
+[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/citedrive/lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/citedrive/lang-bibtex/blob/main/CHANGELOG.md) ]
 
 This package implements BibTeX language support for the
 [CodeMirror](https://codemirror.net/) code editor.
@@ -12,18 +12,13 @@ number of [examples](https://codemirror.net/examples/) and the
 [documentation](https://codemirror.net/docs/).
 
 This code is released under an
-[MIT license](https://github.com/vaisriv/codemirror-lang-bibtex/tree/main/LICENSE).
-
-We aim to be an inclusive, welcoming community. To make that explicit,
-we have a [code of
-conduct](http://contributor-covenant.org/version/1/1/0/) that applies
-to communication around the project.
+[MIT license](https://github.com/citedrive/lang-bibtex/tree/main/LICENSE).
 
 ## Usage
 
 ```javascript
 import {EditorView, basicSetup} from "codemirror"
-import {bibtex} from "codemirror-lang-bibtex"
+import {bibtex} from "lang-bibtex"
 
 const view = new EditorView({
   parent: document.body,
@@ -43,7 +38,7 @@ const view = new EditorView({
 <ul>
 <li><strong>BibTeX</strong> vs <strong>BibLaTeX</strong> language support: defaults to BibTeX</li>
 <li><strong>Snippet Smart-Suggestion:</strong> The smart-suggestion feature only suggests snippets for bibliography <code>entries</code> (i.e. <code>@article = {...}</code>) when the user <em>is not</em> currently editing an entry and only suggests snippets for bibliography <code>fields</code> (i.e. <code>author = {Donald Knuth}</code>) when the user <em>is</em> currently editing an entry.</li>
-<li><strong>Opinionated Snippets</strong>: Snippets have been scaffolded as per the current <a href="https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de">BibTeX</a>/<a href="https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org">BibLaTeX</a> specs. The snippet <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionSection">render config</a>, exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an <a href="https://www.citedrive.com/en/blog/codemirror-bibtex-plugin">opinionated</a> manner (<a href="https://github.com/vaisriv/codemirror-lang-bibtex/issues">suggestions</a> are welcome!).</li>
+<li><strong>Opinionated Snippets</strong>: Snippets have been scaffolded as per the current <a href="https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de">BibTeX</a>/<a href="https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org">BibLaTeX</a> specs. The snippet <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionSection">render config</a>, exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an <a href="https://www.citedrive.com/en/blog/codemirror-bibtex-plugin">opinionated</a> manner (<a href="https://github.com/citedrive/lang-bibtex/issues">suggestions</a> are welcome!).</li>
 <li><strong>Syntax Linting</strong>: Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to <a href="https://github.com/flamingtempura/bibtex-tidy">bibtex-tidy</a>.</li>
 </ul>
 </dd>
