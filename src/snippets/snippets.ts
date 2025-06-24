@@ -4,6 +4,7 @@ import {snippet, CompletionSection} from "@codemirror/autocomplete"
 export const sections = {
     Entry: {name: "Entry", rank: 0},
     Field: {name: "Field", rank: 0},
+    Keyword: {name: "Keyword", rank: 0},
     Recommended: {name: "Recommended", rank: 1},
     Optional: {name: "Optional", rank: 2},
     Alias: {name: "Alias", rank: 3},
@@ -38,6 +39,21 @@ export const createField = (label: string, section: CompletionSection, detail: s
 
         // render options
         section: section,
+        type: "property",
+    })
+};
+
+export const createKeyword = (label: string) => {
+    return ({
+        // matching options
+        label: label,
+        detail: "Custom Keyword",
+
+        // expansion
+        apply: snippet(`${label}`),
+
+        // render options
+        section: sections.Keyword,
         type: "property",
     })
 };

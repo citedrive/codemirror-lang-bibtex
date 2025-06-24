@@ -4,7 +4,7 @@ import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp} from "@codemi
 import {autocompletion, completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
 import {bibtexCompletion} from "./completion"
 import {bibtexLinter} from "./linter"
-import { bibtexEntries, bibtexFields, biblatexEntries, biblatexFields, createEntry, createField } from "./snippets/index"
+import { bibtexEntries, bibtexFields, biblatexEntries, biblatexFields, createEntry, createField, createKeyword } from "./snippets/index"
 
 /// BibTeX Language configuration with [syntax highlighting](#language.syntaxHighlighting), [folding](#language.foldNodeProp), and [indentation](#language.indentNodeProp).
 export const bibtexLanguage = LRLanguage.define({
@@ -48,26 +48,30 @@ export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, 
 /// - **Snippet Smart-Suggestion:** The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article = {...}`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
 /// - **Opinionated Snippets**: Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. The snippet [render config](#autocomplete.CompletionSection), exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/citedrive/lang-bibtex/issues) are welcome!).
 /// - **Syntax Linting**: Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to [bibtex-tidy](https://github.com/flamingtempura/bibtex-tidy).
-export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, syntaxLinter?: boolean} = {biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true}) {
+/// - **Custom Keywords**: Users can specify custom keywords/values that will be auto-suggested when within a `FieldValue` syntax node.
+export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, syntaxLinter?: boolean, keywords?: readonly string[]} = {biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, keywords: []}) {
     // allow user to only specify config options that they care about
     // it's a little hack-y because we're defining the defaults twice, but the defaults in the function signature are there for the documentation
-    let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, ...config };
+    let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, keywords: [], ...config };
 
     // create snippets
     const bibtexEntrySnippets = bibtexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
     const bibtexFieldSnippets = bibtexFields.map(field => createField(field.name, field.type, field.description));
     const biblatexEntrySnippets = biblatexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
     const biblatexFieldSnippets = biblatexFields.map(field => createField(field.name, field.type, field.description));
+    const userKeywordSnippets = userConfig.keywords.map(keyword => createKeyword(keyword));
 
     const bibtexSnippets = {
         entries: bibtexEntrySnippets,
         fields: bibtexFieldSnippets,
-        all: bibtexEntrySnippets.concat(bibtexFieldSnippets)
+        keywords: userKeywordSnippets,
+        all: bibtexEntrySnippets.concat(bibtexFieldSnippets, userKeywordSnippets)
     };
     const biblatexSnippets = {
         entries: biblatexEntrySnippets,
         fields: biblatexFieldSnippets,
-        all: biblatexEntrySnippets.concat(biblatexFieldSnippets)
+        keywords: userKeywordSnippets,
+        all: biblatexEntrySnippets.concat(biblatexFieldSnippets, userKeywordSnippets)
     };
 
     // setup language/autocompletion behavior based on user config
@@ -78,10 +82,13 @@ export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snip
     let bibSnippetExtension = userConfig.smartSuggest
         ? [
             bibLanguage.data.of({
-                autocomplete: ifIn(["EntryValue"], completeFromList(bibSnippets.fields))
+                autocomplete: ifIn(["FieldType"], ifIn(["EntryValue"], completeFromList(bibSnippets.fields)))
             }),
             bibLanguage.data.of({
                 autocomplete: ifNotIn(["EntryValue"], completeFromList(bibSnippets.entries))
+            }),
+            bibLanguage.data.of({
+                autocomplete: ifIn(["FieldValue"], completeFromList(bibSnippets.keywords))
             }),
         ]
         : [
