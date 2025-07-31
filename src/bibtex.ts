@@ -44,14 +44,23 @@ export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, 
 /// [BibTeX](#lang-bibtex.bibtexLanguage) language support with [BibLaTeX](#lang-bibtex.biblatexLanguage) dialect support, autocompletion [configuration](#lang-bibtex.bibtexCompletion), and [snippets](#autocomplete.snippet) for both BibTeX and BibLaTeX that are suggested based on the editor [context](#autocomplete.CompletionContext).
 ///
 /// There are configuration options for the following:
-/// - **BibTeX** vs **BibLaTeX** language support: defaults to BibTeX
-/// - **Snippet Smart-Suggestion:** The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article = {...}`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
-/// - **Opinionated Snippets**: Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. The snippet [render config](#autocomplete.CompletionSection), exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/citedrive/lang-bibtex/issues) are welcome!).
-/// - **Syntax Linting**: Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to [bibtex-tidy](https://github.com/flamingtempura/bibtex-tidy).
-/// - **Custom Keywords**: Users can specify custom keywords/values that will be auto-suggested when within a `FieldValue` syntax node.
-export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, syntaxLinter?: boolean, keywords?: readonly string[]} = {biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, keywords: []}) {
+/// - **BibTeX** vs **BibLaTeX** language support:
+///     - default: `biblatex: false`
+///     - defaults to BibTeX
+/// - **Snippet Smart-Suggestion:**
+///     - default: `smartSuggest: true`
+///     - The smart-suggestion feature only suggests snippets for bibliography `entries` (i.e. `@article = {...}`) when the user *is not* currently editing an entry and only suggests snippets for bibliography `fields` (i.e. `author = {Donald Knuth}`) when the user *is* currently editing an entry.
+/// - **Opinionated Snippets**:
+///     - default: `snippetRecs: true`
+///     - Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. The snippet [render config](#autocomplete.CompletionSection), exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/citedrive/lang-bibtex/issues) are welcome!).
+/// - **Syntax Linting**:
+///     - default: `syntaxLinter: true`
+///     - Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to [bibtex-tidy](https://github.com/flamingtempura/bibtex-tidy).
+/// - **Custom Keywords**:
+///     - default: `keywords: []`
+///     - Users can specify custom keywords/values that will be auto-suggested when within a `FieldValue` syntax node.
+export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, syntaxLinter?: boolean, keywords?: readonly string[]} = {}) {
     // allow user to only specify config options that they care about
-    // it's a little hack-y because we're defining the defaults twice, but the defaults in the function signature are there for the documentation
     let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, keywords: [], ...config };
 
     // create snippets

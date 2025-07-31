@@ -31,16 +31,41 @@ const view = new EditorView({
 
 <dl>
 <dt id="user-content-bibtex">
-  <code><strong><a href="#user-content-bibtex">bibtex</a></strong>(<a id="user-content-bibtex^config" href="#user-content-bibtex^config">config</a>&#8288;?: {biblatex&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, smartSuggest&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, snippetRecs&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, syntaxLinter&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, keywords&#8288;?: readonly <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>[]} = {biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, keywords: []}) → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
+  <code><strong><a href="#user-content-bibtex">bibtex</a></strong>(<a id="user-content-bibtex^config" href="#user-content-bibtex^config">config</a>&#8288;?: {biblatex&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, smartSuggest&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, snippetRecs&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, syntaxLinter&#8288;?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a>, keywords&#8288;?: readonly <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>[]} = {}) → <a href="https://codemirror.net/docs/ref#language.LanguageSupport">LanguageSupport</a></code></dt>
 
 <dd><p><a href="#user-content-bibtexlanguage">BibTeX</a> language support with <a href="#user-content-biblatexlanguage">BibLaTeX</a> dialect support, autocompletion <a href="#user-content-bibtexcompletion">configuration</a>, and <a href="https://codemirror.net/docs/ref/#autocomplete.snippet">snippets</a> for both BibTeX and BibLaTeX that are suggested based on the editor <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionContext">context</a>.</p>
 <p>There are configuration options for the following:</p>
 <ul>
-<li><strong>BibTeX</strong> vs <strong>BibLaTeX</strong> language support: defaults to BibTeX</li>
-<li><strong>Snippet Smart-Suggestion:</strong> The smart-suggestion feature only suggests snippets for bibliography <code>entries</code> (i.e. <code>@article = {...}</code>) when the user <em>is not</em> currently editing an entry and only suggests snippets for bibliography <code>fields</code> (i.e. <code>author = {Donald Knuth}</code>) when the user <em>is</em> currently editing an entry.</li>
-<li><strong>Opinionated Snippets</strong>: Snippets have been scaffolded as per the current <a href="https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de">BibTeX</a>/<a href="https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org">BibLaTeX</a> specs. The snippet <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionSection">render config</a>, exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an <a href="https://www.citedrive.com/en/blog/codemirror-bibtex-plugin">opinionated</a> manner (<a href="https://github.com/citedrive/lang-bibtex/issues">suggestions</a> are welcome!).</li>
-<li><strong>Syntax Linting</strong>: Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to <a href="https://github.com/flamingtempura/bibtex-tidy">bibtex-tidy</a>.</li>
-<li><strong>Custom Keywords</strong>: Users can specify custom keywords/values that will be auto-suggested when within a <code>FieldValue</code> syntax node.</li>
+<li><strong>BibTeX</strong> vs <strong>BibLaTeX</strong> language support:
+<ul>
+<li>default: <code>biblatex: false</code></li>
+<li>defaults to BibTeX</li>
+</ul>
+</li>
+<li><strong>Snippet Smart-Suggestion:</strong>
+<ul>
+<li>default: <code>smartSuggest: true</code></li>
+<li>The smart-suggestion feature only suggests snippets for bibliography <code>entries</code> (i.e. <code>@article = {...}</code>) when the user <em>is not</em> currently editing an entry and only suggests snippets for bibliography <code>fields</code> (i.e. <code>author = {Donald Knuth}</code>) when the user <em>is</em> currently editing an entry.</li>
+</ul>
+</li>
+<li><strong>Opinionated Snippets</strong>:
+<ul>
+<li>default: <code>snippetRecs: true</code></li>
+<li>Snippets have been scaffolded as per the current <a href="https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de">BibTeX</a>/<a href="https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org">BibLaTeX</a> specs. The snippet <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionSection">render config</a>, exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an <a href="https://www.citedrive.com/en/blog/codemirror-bibtex-plugin">opinionated</a> manner (<a href="https://github.com/citedrive/lang-bibtex/issues">suggestions</a> are welcome!).</li>
+</ul>
+</li>
+<li><strong>Syntax Linting</strong>:
+<ul>
+<li>default: <code>syntaxLinter: true</code></li>
+<li>Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to <a href="https://github.com/flamingtempura/bibtex-tidy">bibtex-tidy</a>.</li>
+</ul>
+</li>
+<li><strong>Custom Keywords</strong>:
+<ul>
+<li>default: <code>keywords: []</code></li>
+<li>Users can specify custom keywords/values that will be auto-suggested when within a <code>FieldValue</code> syntax node.</li>
+</ul>
+</li>
 </ul>
 </dd>
 <dt id="user-content-bibtexlanguage">
