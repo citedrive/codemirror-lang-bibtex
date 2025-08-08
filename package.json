@@ -3,7 +3,7 @@
   "version": "6.0.1",
   "license": "MIT",
   "description": "BibTeX language support for CodeMirror",
-  "homepage": "https://github.com/citedrive/lang-bibtex#readme",
+  "homepage": "https://www.citedrive.com",
   "bugs": "https://github.com/citedrive/lang-bibtex/issues",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "author": {
     "name": "Vai Srivastava",
     "email": "vai.sriv@icloud.com",
-    "url": "http://vaisriv.com/"
+    "url": "https://vaisriv.com"
   },
   "type": "module",
   "main": "dist/index.cjs",
