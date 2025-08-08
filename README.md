@@ -1,6 +1,6 @@
 <!-- NOTE: README.md is generated from src/README.md -->
 
-# codemirror-lang-bibtex
+# @citedrive/codemirror-lang-bibtex
 
 [ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/citedrive/lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/citedrive/lang-bibtex/blob/main/CHANGELOG.md) ]
 
@@ -18,7 +18,7 @@ This code is released under an
 
 ```javascript
 import {EditorView, basicSetup} from "codemirror"
-import {bibtex} from "lang-bibtex"
+import {bibtex} from "@citedrive/codemirror-lang-bibtex"
 
 const view = new EditorView({
   parent: document.body,
