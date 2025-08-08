@@ -14,7 +14,8 @@
     "code",
     "codemirror",
     "language",
-    "bibtex"
+    "bibtex",
+    "biblatex"
   ],
   "author": {
     "name": "Vai Srivastava",
