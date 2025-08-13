@@ -4,10 +4,10 @@
   "license": "MIT",
   "description": "BibTeX language support for CodeMirror",
   "homepage": "https://www.citedrive.com",
-  "bugs": "https://github.com/citedrive/lang-bibtex/issues",
+  "bugs": "https://github.com/citedrive/codemirror-lang-bibtex/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/citedrive/lang-bibtex.git"
+    "url": "git+https://github.com/citedrive/codemirror-lang-bibtex.git"
   },
   "keywords": [
     "editor",

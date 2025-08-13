@@ -2,7 +2,7 @@
 
 # @citedrive/codemirror-lang-bibtex
 
-[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/citedrive/lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/citedrive/lang-bibtex/blob/main/CHANGELOG.md) ]
+[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/citedrive/codemirror-lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/citedrive/codemirror-lang-bibtex/blob/main/CHANGELOG.md) ]
 
 This package implements BibTeX language support for the
 [CodeMirror](https://codemirror.net/) code editor.
@@ -12,7 +12,7 @@ number of [examples](https://codemirror.net/examples/) and the
 [documentation](https://codemirror.net/docs/).
 
 This code is released under an
-[MIT license](https://github.com/citedrive/lang-bibtex/tree/main/LICENSE).
+[MIT license](https://github.com/citedrive/codemirror-lang-bibtex/tree/main/LICENSE).
 
 ## Usage
 
@@ -51,7 +51,7 @@ const view = new EditorView({
 <li><strong>Opinionated Snippets</strong>:
 <ul>
 <li>default: <code>snippetRecs: true</code></li>
-<li>Snippets have been scaffolded as per the current <a href="https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de">BibTeX</a>/<a href="https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org">BibLaTeX</a> specs. The snippet <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionSection">render config</a>, exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an <a href="https://www.citedrive.com/en/blog/codemirror-bibtex-plugin">opinionated</a> manner (<a href="https://github.com/citedrive/lang-bibtex/issues">suggestions</a> are welcome!).</li>
+<li>Snippets have been scaffolded as per the current <a href="https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de">BibTeX</a>/<a href="https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org">BibLaTeX</a> specs. The snippet <a href="https://codemirror.net/docs/ref/#autocomplete.CompletionSection">render config</a>, exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an <a href="https://www.citedrive.com/en/blog/codemirror-bibtex-plugin">opinionated</a> manner (<a href="https://github.com/citedrive/codemirror-lang-bibtex/issues">suggestions</a> are welcome!).</li>
 </ul>
 </li>
 <li><strong>Syntax Linting</strong>:
