@@ -2,7 +2,7 @@
 
 # @citedrive/codemirror-lang-bibtex
 
-[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/citedrive/codemirror-lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/citedrive/codemirror-lang-bibtex/blob/main/CHANGELOG.md) ]
+[ [**WEBSITE**](https://codemirror.net/) | [**ISSUES**](https://github.com/citedrive/codemirror-lang-bibtex/issues) | [**FORUM**](https://discuss.codemirror.net/c/next/) | [**CHANGELOG**](https://github.com/citedrive/codemirror-lang-bibtex/releases) ]
 
 This package implements BibTeX language support for the
 [CodeMirror](https://codemirror.net/) code editor.
