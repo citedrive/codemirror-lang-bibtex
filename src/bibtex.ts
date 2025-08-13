@@ -1,10 +1,28 @@
-import {parser} from "./syntax.grammar"
-import {styleTags, tags as t} from "@lezer/highlight"
-import {LRLanguage, LanguageSupport, indentNodeProp, foldNodeProp} from "@codemirror/language"
-import {autocompletion, completeFromList, ifIn, ifNotIn} from "@codemirror/autocomplete"
-import {bibtexCompletion} from "./completion"
-import {bibtexLinter} from "./linter"
-import { bibtexEntries, bibtexFields, biblatexEntries, biblatexFields, createEntry, createField, createKeyword } from "./snippets/index"
+import { parser } from "./syntax.grammar";
+import { styleTags, tags as t } from "@lezer/highlight";
+import {
+    LRLanguage,
+    LanguageSupport,
+    indentNodeProp,
+    foldNodeProp,
+} from "@codemirror/language";
+import {
+    autocompletion,
+    completeFromList,
+    ifIn,
+    ifNotIn,
+} from "@codemirror/autocomplete";
+import { bibtexCompletion } from "./completion";
+import { bibtexLinter } from "./linter";
+import {
+    bibtexEntries,
+    bibtexFields,
+    biblatexEntries,
+    biblatexFields,
+    createEntry,
+    createField,
+    createKeyword,
+} from "./snippets/index";
 
 /// BibTeX Language configuration with [syntax highlighting](#language.syntaxHighlighting), [folding](#language.foldNodeProp), and [indentation](#language.indentNodeProp).
 export const bibtexLanguage = LRLanguage.define({
@@ -23,23 +41,44 @@ export const bibtexLanguage = LRLanguage.define({
                 ",": t.separator,
             }),
             foldNodeProp.add({
-                Entry: context => { return {from: context.node.firstChild.to , to: context.node.lastChild.to + 1}; },
-                FieldValue: context => { return { from: context.node.from + 1, to: context.node.to - 1 }; }
+                Entry: (context) => {
+                    return {
+                        from: context.node.firstChild.to,
+                        to: context.node.lastChild.to + 1,
+                    };
+                },
+                FieldValue: (context) => {
+                    return {
+                        from: context.node.from + 1,
+                        to: context.node.to - 1,
+                    };
+                },
             }),
             indentNodeProp.add({
-                Entry: context => { return context.column(context.node.parent.from) + context.unit; },
-                FieldValue: context => { return context.column(context.node.parent.from) + context.unit; }
-            })
-        ]
+                Entry: (context) => {
+                    return (
+                        context.column(context.node.parent.from) + context.unit
+                    );
+                },
+                FieldValue: (context) => {
+                    return (
+                        context.column(context.node.parent.from) + context.unit
+                    );
+                },
+            }),
+        ],
     }),
     languageData: {
-        closeBrackets: { brackets: ["{", "\'", "\""] },
+        closeBrackets: { brackets: ["{", "\'", '"'] },
         commentTokens: { line: "%" },
-    }
-})
+    },
+});
 
 /// BibLaTeX Language configuration as a [dialect](https://lezer.codemirror.net/docs/ref/#lr.ParserConfig.dialect) of [BibTeX](#lang-bibtex.bibtexLanguage).
-export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, "BibLaTeX");
+export const biblatexLanguage = bibtexLanguage.configure(
+    { dialect: "biblatex" },
+    "BibLaTeX",
+);
 
 /// [BibTeX](#lang-bibtex.bibtexLanguage) language support with [BibLaTeX](#lang-bibtex.biblatexLanguage) dialect support, autocompletion [configuration](#lang-bibtex.bibtexCompletion), and [snippets](#autocomplete.snippet) for both BibTeX and BibLaTeX that are suggested based on the editor [context](#autocomplete.CompletionContext).
 ///
@@ -59,60 +98,110 @@ export const biblatexLanguage = bibtexLanguage.configure({dialect: "biblatex"}, 
 /// - **Custom Keywords**:
 ///     - default: `keywords: []`
 ///     - Users can specify custom keywords/values that will be auto-suggested when within a `FieldValue` syntax node.
-export function bibtex(config: {biblatex?: boolean, smartSuggest?: boolean, snippetRecs?: boolean, syntaxLinter?: boolean, keywords?: readonly string[]} = {}) {
+export function bibtex(
+    config: {
+        biblatex?: boolean;
+        smartSuggest?: boolean;
+        snippetRecs?: boolean;
+        syntaxLinter?: boolean;
+        keywords?: readonly string[];
+    } = {},
+) {
     // allow user to only specify config options that they care about
-    let userConfig = { biblatex: false, smartSuggest: true, snippetRecs: true, syntaxLinter: true, keywords: [], ...config };
+    let userConfig = {
+        biblatex: false,
+        smartSuggest: true,
+        snippetRecs: true,
+        syntaxLinter: true,
+        keywords: [],
+        ...config,
+    };
 
     // create snippets
-    const bibtexEntrySnippets = bibtexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
-    const bibtexFieldSnippets = bibtexFields.map(field => createField(field.name, field.type, field.description));
-    const biblatexEntrySnippets = biblatexEntries.map(entry => createEntry(entry.name, entry.type, entry.description, entry.fields, userConfig.snippetRecs));
-    const biblatexFieldSnippets = biblatexFields.map(field => createField(field.name, field.type, field.description));
-    const userKeywordSnippets = userConfig.keywords.map(keyword => createKeyword(keyword));
+    const bibtexEntrySnippets = bibtexEntries.map((entry) =>
+        createEntry(
+            entry.name,
+            entry.type,
+            entry.description,
+            entry.fields,
+            userConfig.snippetRecs,
+        ),
+    );
+    const bibtexFieldSnippets = bibtexFields.map((field) =>
+        createField(field.name, field.type, field.description),
+    );
+    const biblatexEntrySnippets = biblatexEntries.map((entry) =>
+        createEntry(
+            entry.name,
+            entry.type,
+            entry.description,
+            entry.fields,
+            userConfig.snippetRecs,
+        ),
+    );
+    const biblatexFieldSnippets = biblatexFields.map((field) =>
+        createField(field.name, field.type, field.description),
+    );
+    const userKeywordSnippets = userConfig.keywords.map((keyword) =>
+        createKeyword(keyword),
+    );
 
     const bibtexSnippets = {
         entries: bibtexEntrySnippets,
         fields: bibtexFieldSnippets,
         keywords: userKeywordSnippets,
-        all: bibtexEntrySnippets.concat(bibtexFieldSnippets, userKeywordSnippets)
+        all: bibtexEntrySnippets.concat(
+            bibtexFieldSnippets,
+            userKeywordSnippets,
+        ),
     };
     const biblatexSnippets = {
         entries: biblatexEntrySnippets,
         fields: biblatexFieldSnippets,
         keywords: userKeywordSnippets,
-        all: biblatexEntrySnippets.concat(biblatexFieldSnippets, userKeywordSnippets)
+        all: biblatexEntrySnippets.concat(
+            biblatexFieldSnippets,
+            userKeywordSnippets,
+        ),
     };
 
     // setup language/autocompletion behavior based on user config
     let bibLanguage = userConfig.biblatex ? biblatexLanguage : bibtexLanguage;
-    let bibSnippets = userConfig.biblatex
-        ? biblatexSnippets
-        : bibtexSnippets;
+    let bibSnippets = userConfig.biblatex ? biblatexSnippets : bibtexSnippets;
     let bibSnippetExtension = userConfig.smartSuggest
         ? [
-            bibLanguage.data.of({
-                autocomplete: ifIn(["FieldType"], ifIn(["EntryValue"], completeFromList(bibSnippets.fields)))
-            }),
-            bibLanguage.data.of({
-                autocomplete: ifNotIn(["EntryValue"], completeFromList(bibSnippets.entries))
-            }),
-            bibLanguage.data.of({
-                autocomplete: ifIn(["FieldValue"], completeFromList(bibSnippets.keywords))
-            }),
-        ]
+              bibLanguage.data.of({
+                  autocomplete: ifIn(
+                      ["FieldType"],
+                      ifIn(
+                          ["EntryValue"],
+                          completeFromList(bibSnippets.fields),
+                      ),
+                  ),
+              }),
+              bibLanguage.data.of({
+                  autocomplete: ifNotIn(
+                      ["EntryValue"],
+                      completeFromList(bibSnippets.entries),
+                  ),
+              }),
+              bibLanguage.data.of({
+                  autocomplete: ifIn(
+                      ["FieldValue"],
+                      completeFromList(bibSnippets.keywords),
+                  ),
+              }),
+          ]
         : [
-            bibLanguage.data.of({
-                autocomplete: completeFromList(bibSnippets.all)
-            }),
-        ];
+              bibLanguage.data.of({
+                  autocomplete: completeFromList(bibSnippets.all),
+              }),
+          ];
 
     let bibExtensions = userConfig.syntaxLinter
         ? [bibtexLinter, bibtexCompletion, bibSnippetExtension]
         : [bibtexCompletion, bibSnippetExtension];
 
     // actually create the language object
-    return new LanguageSupport(
-        bibLanguage,
-        bibExtensions
-    );
+    return new LanguageSupport(bibLanguage, bibExtensions);
 }

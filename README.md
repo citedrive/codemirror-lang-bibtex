@@ -17,14 +17,14 @@ This code is released under an
 ## Usage
 
 ```javascript
-import {EditorView, basicSetup} from "codemirror"
-import {bibtex} from "@citedrive/codemirror-lang-bibtex"
+import { EditorView, basicSetup } from "codemirror";
+import { bibtex } from "@citedrive/codemirror-lang-bibtex";
 
 const view = new EditorView({
-  parent: document.body,
-  doc: `fmt.Println("hello world")`,
-  extensions: [basicSetup, bibtex()]
-})
+    parent: document.body,
+    doc: `fmt.Println("hello world")`,
+    extensions: [basicSetup, bibtex()],
+});
 ```
 
 ## API Reference

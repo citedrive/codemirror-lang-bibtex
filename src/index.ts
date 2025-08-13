@@ -1,3 +1,3 @@
-export * from "./bibtex"
-export * from "./completion"
-export * from "./linter"
+export * from "./bibtex";
+export * from "./completion";
+export * from "./linter";
