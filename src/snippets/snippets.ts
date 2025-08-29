@@ -21,10 +21,12 @@ export const createEntry = (
 ) => {
     let applySnip = snipRecs
         ? snippet(
-              `@${label}{#{<citationkey>},\n\t% Recommended Fields:${fields.recommended.map((f) => `\n\t${f} = {#{<${f}>}}`)},\n\n\t% Optional Fields:${fields.optional.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
+              // `@${label}{#{<citationkey>},\n\t% Recommended Fields:${fields.recommended.map((f) => `\n\t${f} = {#{<${f}>}}`)},\n\n\t% Optional Fields:${fields.optional.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
+              `@${label}{citationkey,\n\t% Recommended Fields:${fields.recommended.map((f) => `\n\t${f} = {${f}}`)},\n\n\t% Optional Fields:${fields.optional.map((f) => `\n\t${f} = {${f}}`)}\n}`,
           )
         : snippet(
-              `@${label}{#{<citationkey>},${fields.required.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
+              // `@${label}{#{<citationkey>},${fields.required.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
+              `@${label}{citationkey,${fields.required.map((f) => `\n\t${f} = {${f}}`)}\n}`,
           );
     return {
         // matching options
@@ -49,7 +51,8 @@ export const createField = (
         detail: detail,
 
         // expansion
-        apply: snippet(`${label} = {#{<${label}>}}#{,}\n#{}`),
+        // apply: snippet(`${label} = {#{<${label}>}}#{,}\n#{}`),
+        apply: snippet(`${label} = {${label}}`),
 
         // render options
         section: section,
