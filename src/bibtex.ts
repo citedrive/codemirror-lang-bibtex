@@ -92,6 +92,12 @@ export const biblatexLanguage = bibtexLanguage.configure(
 /// - **Opinionated Snippets**:
 ///     - default: `snippetRecs: true`
 ///     - Snippets have been scaffolded as per the current [BibTeX](https://ctan.org/ctan-ann/id/mailman.3109.1292253131.2307.ctan-ann@dante.de)/[BibLaTeX](https://ctan.org/ctan-ann/id/mailman.404.1656879977.32352.ctan-ann@ctan.org) specs. The snippet [render config](#autocomplete.CompletionSection), exclusion of certain snippets, and entry snippets' suggestion of recommendation/optional fields are done in an [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin) manner ([suggestions](https://github.com/citedrive/codemirror-lang-bibtex/issues) are welcome!).
+/// - **Automatic Cursor Placement**:
+///     - default: `autoCursor: true`
+///     - Automatically place the cursor in ideal location(s) when expanding a snippet. This, as well, is [opinionated](https://www.citedrive.com/en/blog/codemirror-bibtex-plugin).
+///     - Please note that this feature relies on the cursor state (which is tracked by [EditorState](#state.EditorState)). When overwriting the EditorState (in a non user-input related manner, i.e. via a formatting plugin), the future cursor locations do not always persist, leading to a clunky (or sometimes fully inoperable) experience.
+///     - Thus, if your CodeMirror implementation relies heavily on modifying/overwriting EditorState, I would recommend testing both with and without this feature, to see which works best for your use-case.
+///     - _(As an aside: I have some ideas on how to fix this issue, but I have just started a new semester at uni and will likely not have much time to work on the plugin for the next few months. - Vai)_
 /// - **Syntax Linting**:
 ///     - default: `syntaxLinter: true`
 ///     - Invalid BibTeX (and BibLaTeX) syntax is underlined in red and a warning is issued, thanks to [bibtex-tidy](https://github.com/flamingtempura/bibtex-tidy).
@@ -103,6 +109,7 @@ export function bibtex(
         biblatex?: boolean;
         smartSuggest?: boolean;
         snippetRecs?: boolean;
+        autoCursor?: boolean;
         syntaxLinter?: boolean;
         keywords?: readonly string[];
     } = {},
@@ -112,6 +119,7 @@ export function bibtex(
         biblatex: false,
         smartSuggest: true,
         snippetRecs: true,
+        autoCursor: true,
         syntaxLinter: true,
         keywords: [],
         ...config,
@@ -125,10 +133,16 @@ export function bibtex(
             entry.description,
             entry.fields,
             userConfig.snippetRecs,
+            userConfig.autoCursor,
         ),
     );
     const bibtexFieldSnippets = bibtexFields.map((field) =>
-        createField(field.name, field.type, field.description),
+        createField(
+            field.name,
+            field.type,
+            field.description,
+            userConfig.autoCursor,
+        ),
     );
     const biblatexEntrySnippets = biblatexEntries.map((entry) =>
         createEntry(
@@ -137,10 +151,16 @@ export function bibtex(
             entry.description,
             entry.fields,
             userConfig.snippetRecs,
+            userConfig.autoCursor,
         ),
     );
     const biblatexFieldSnippets = biblatexFields.map((field) =>
-        createField(field.name, field.type, field.description),
+        createField(
+            field.name,
+            field.type,
+            field.description,
+            userConfig.autoCursor,
+        ),
     );
     const userKeywordSnippets = userConfig.keywords.map((keyword) =>
         createKeyword(keyword),
