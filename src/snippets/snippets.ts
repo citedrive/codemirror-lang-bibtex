@@ -19,21 +19,22 @@ export const createEntry = (
     fields: { recommended: string[]; optional: string[]; required: string[] },
     snipRecs: boolean,
     autoCursor: boolean,
+    suppressComments: boolean, // Suppress inline comments in the snippet
 ) => {
     let applySnip = snipRecs
         ? autoCursor
             ? snippet(
-                  `@${label}{#{<citationkey>},\n\t% Recommended Fields:${fields.recommended.map((f) => `\n\t${f} = {#{<${f}>}}`)},\n\n\t% Optional Fields:${fields.optional.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
-              )
+                `@${label}{#{<citationkey>},${suppressComments ? '' : '\n\t% Recommended Fields:'}${fields.recommended.map((f) => `\n\t${f} = {#{<${f}>}}`)},${suppressComments ? '' : '\n\n\t% Optional Fields:'}${fields.optional.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
+            )
             : snippet(
-                  `@${label}{#{citationkey},\n\t% Recommended Fields:${fields.recommended.map((f) => `\n\t${f} = {${f}}`)},\n\n\t% Optional Fields:${fields.optional.map((f) => `\n\t${f} = {${f}}`)}\n}`,
+                  `@${label}{#{citationkey},${suppressComments ? '' : '\n\t% Recommended Fields:'}${fields.recommended.map((f) => `\n\t${f} = {}`)},${suppressComments ? '' : '\n\n\t% Optional Fields:'}${fields.optional.map((f) => `\n\t${f} = {}`)}\n}`,
               )
         : autoCursor
-          ? snippet(
+            ? snippet(
                 `@${label}{#{<citationkey>},${fields.required.map((f) => `\n\t${f} = {#{<${f}>}}`)}\n}`,
             )
-          : snippet(
-                `@${label}{#{citationkey},${fields.required.map((f) => `\n\t${f} = {${f}}`)}\n}`,
+            : snippet(
+                `@${label}{#{citationkey},${fields.required.map((f) => `\n\t${f} = {}`)}\n}`,
             );
     return {
         // matching options
