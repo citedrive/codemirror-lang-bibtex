@@ -104,6 +104,9 @@ export const biblatexLanguage = bibtexLanguage.configure(
 /// - **Custom Keywords**:
 ///     - default: `keywords: []`
 ///     - Users can specify custom keywords/values that will be auto-suggested when within a `FieldValue` syntax node.
+/// - **Suppress Comments**:
+///     - default: `suppressComments: false`
+///     - When enabled, suppresses inline comments like "% Recommended Fields:" and "% Optional Fields:" in generated snippets.
 export function bibtex(
     config: {
         biblatex?: boolean;
@@ -112,6 +115,7 @@ export function bibtex(
         autoCursor?: boolean;
         syntaxLinter?: boolean;
         keywords?: readonly string[];
+        suppressComments?: boolean;
     } = {},
 ) {
     // allow user to only specify config options that they care about
@@ -122,6 +126,7 @@ export function bibtex(
         autoCursor: true,
         syntaxLinter: true,
         keywords: [],
+        suppressComments: false,
         ...config,
     };
 
@@ -134,6 +139,7 @@ export function bibtex(
             entry.fields,
             userConfig.snippetRecs,
             userConfig.autoCursor,
+            userConfig.suppressComments,
         ),
     );
     const bibtexFieldSnippets = bibtexFields.map((field) =>
@@ -152,6 +158,7 @@ export function bibtex(
             entry.fields,
             userConfig.snippetRecs,
             userConfig.autoCursor,
+            userConfig.suppressComments,
         ),
     );
     const biblatexFieldSnippets = biblatexFields.map((field) =>
